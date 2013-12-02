@@ -19,8 +19,8 @@ public class Constant {
 	public static final int ACTIVITY_ROLES = 2;
 	public static final int ACTIVITY_HELP = 3;
 	public static final int ACTIVITY_OPENING = 1000;
-	public static final int ACTIVITY_ROLE_VIEW = 2000;
-	public static final int ACTIVITY_ROLE_ACTION = 2001;
+	public static final int ACTIVITY_NIGHT_ROLE = 2000;
+	public static final int ACTIVITY_NIGHT_OPTION = 2001;
 	public static final int ACTIVITY_VOTE_ACTION = 3001;
 
 	public static final int GameOver_Continue = 1;
@@ -40,5 +40,5 @@ public class Constant {
 
 	public static final String Intent_Players_Add_Name = "Players_Add_Name";
 	public static final String Intent_Players_Add_Gender = "Players_Add_Gender";
-	public static final String Intent_RoleView_UID = "RoleView_UID";
+	public static final String Intent_Player_UID = "Player_UID";
 }

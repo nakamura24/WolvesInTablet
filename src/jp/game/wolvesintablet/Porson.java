@@ -13,11 +13,25 @@ public class Porson {
 		Male, Female
 	}
 
-	private long mUID;
-	private String mName;
-	private String mSound;
-	private GENDER mGender;
-
+	protected long mUID;
+	protected String mName;
+	protected String mSound;
+	protected GENDER mGender;
+	
+	public Porson(){
+		this.mUID = 0;
+		this.mName = null;
+		this.mSound = null;
+		this.mGender = GENDER.Male;
+	}
+	
+	public Porson(Porson Porson){
+		this.mUID = Porson.mUID;
+		this.mName = Porson.mName;
+		this.mSound = Porson.mSound;
+		this.mGender = Porson.mGender;
+	}
+	
 	public long getUID() {
 		return this.mUID;
 	}

@@ -23,6 +23,19 @@ public class Player extends Role {
 		this.mLover = false;
 	}
 
+	public Player(Player player) {
+		this.mUID = player.mUID;
+		this.mName = player.mName;
+		this.mSound = player.mSound;
+		this.mGender = player.mGender;
+		this.mRole = player.mRole;
+		this.mHilling = player.mHilling;
+		this.mPoison = player.mPoison;
+		this.mStatus = player.mStatus;
+		this.mSelectedPlayerUID = player.mSelectedPlayerUID;
+		this.mLover = player.mLover;
+	}
+
 	public STATUS getStatus() {
 		return this.mStatus;
 	}
