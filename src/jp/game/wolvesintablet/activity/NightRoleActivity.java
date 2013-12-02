@@ -44,7 +44,7 @@ public class NightRoleActivity extends Activity {
 			mPlayers = Players.getInstance();
 			mGameRule = GameRule.getInstance();
 			Intent intent = getIntent();
-			long UID = intent.getLongExtra(Intent_RoleView_UID, 0);
+			long UID = intent.getLongExtra(Intent_Player_UID, 0);
 			mPlayer = mPlayers.getPlayer(UID);
 			if (mPlayer == null) {
 				// 画面の終了
@@ -211,6 +211,19 @@ public class NightRoleActivity extends Activity {
 		}
 	}
 
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		Log.i(TAG, "onActivityResult");
+		try {
+			switch (requestCode) {
+			case ACTIVITY_NIGHT_OPTION:
+				break;
+			}
+		} catch (Exception e) {
+			ErrorReport.LogException(this, e);
+		}
+	}
+
 	public void onClickRoleImage(View view) {
 		Log.i(TAG, "onClickRoleImage");
 		try {
@@ -226,10 +239,9 @@ public class NightRoleActivity extends Activity {
 	public void onClickConfirmButton(View view) {
 		Log.i(TAG, "onClickConfirmButton");
 		try {
-			// Intent intent = new Intent(this,
-			// NightRoleActivity.class);
-			// intent.putExtra(Intent_RoleView_UID, mPlayer.getUID());
-			// startActivityForResult(intent, ACTIVITY_ROLE_VIEW);
+			Intent intent = new Intent(this, NightOptionActivity.class);
+			intent.putExtra(Intent_Player_UID, mPlayer.getUID());
+			startActivityForResult(intent, ACTIVITY_NIGHT_OPTION);
 		} catch (Exception e) {
 			ErrorReport.LogException(this, e);
 		}

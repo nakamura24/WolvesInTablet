@@ -16,14 +16,24 @@ public class Role extends Porson {
 		Werewolf, Villager, Seer, Medium, Possessed, Bodyguard, Owlman, Freemason, Werehamster, Mythomaniac, Devil, Hunter, Apothecary, Matchmaker, Witch, Scryer, Oracle, Hierophant, Magistrate, Gravedigger, Crone, Warlock, Necromancer, Thief, Toughgay, CultLeader, Cultist, Mystic, Fool,
 	}
 
-	private ROLE mRole;
-	private boolean mHilling;
-	private boolean mPoison;
+	protected ROLE mRole;
+	protected boolean mHilling;
+	protected boolean mPoison;
 
 	public Role() {
 		this.mRole = ROLE.Villager;
 		this.mHilling = false;
 		this.mPoison = false;
+	}
+
+	public Role(Role role) {
+		this.mUID = role.mUID;
+		this.mName = role.mName;
+		this.mSound = role.mSound;
+		this.mGender = role.mGender;
+		this.mRole = role.mRole;
+		this.mHilling = role.mHilling;
+		this.mPoison = role.mPoison;
 	}
 
 	public void setRole(ROLE role) {

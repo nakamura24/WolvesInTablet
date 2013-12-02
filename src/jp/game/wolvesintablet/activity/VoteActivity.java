@@ -165,7 +165,7 @@ public class VoteActivity extends Activity {
 					players[mPosition] = true;
 					Intent intent = new Intent(VoteActivity.this,
 							VoteActionActivity.class);
-					intent.putExtra(Intent_RoleView_UID, mPlayers
+					intent.putExtra(Intent_Player_UID, mPlayers
 							.getPlayingPlayers().get(mPosition).getUID());
 					startActivityForResult(intent, ACTIVITY_VOTE_ACTION);
 				} catch (ActivityNotFoundException e) {

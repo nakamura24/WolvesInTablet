@@ -49,7 +49,7 @@ public class GameRule {
 		return this.mDays++;
 	}
 
-	public long getLynchedPlayer() {
+	public long getLynchedPlayerUID() {
 		return LynchedPlayerUID;
 	}
 
