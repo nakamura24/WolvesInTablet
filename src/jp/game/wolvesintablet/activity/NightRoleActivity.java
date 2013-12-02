@@ -11,6 +11,7 @@ package jp.game.wolvesintablet.activity;
 import java.util.ArrayList;
 
 import jp.game.wolvesintablet.*;
+import jp.game.wolvesintablet.Player.STATUS;
 import static jp.game.wolvesintablet.Constant.*;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -52,14 +53,15 @@ public class NightRoleActivity extends Activity {
 				finish();
 			}
 			if (mGameRule.getDays() > 1) {
-				roleAction();
-			} else {
-				mSelectablePlayers.clear();
-				for (Player player : mPlayers.getAlivePlayers()) {
-					if (player.getUID() != UID) {
-						mSelectablePlayers.add(player);
-					}
+				if (mPlayer.getStatus() == STATUS.Alive) {
+					// 役職の行動
+					roleAction();
+				} else {
+					// 殺されたプレイヤーの行動
+					gameOverPlayer();
 				}
+			} else {
+				// 役職を表示
 				roleView();
 			}
 		} catch (Exception e) {
@@ -67,6 +69,7 @@ public class NightRoleActivity extends Activity {
 		}
 	}
 
+	// 役職を表示
 	public void roleView() {
 		Log.i(TAG, "roleView");
 		try {
@@ -86,6 +89,7 @@ public class NightRoleActivity extends Activity {
 		}
 	}
 
+	// 役職の行動
 	public void roleAction() {
 		Log.i(TAG, "roleAction");
 		try {
@@ -99,6 +103,15 @@ public class NightRoleActivity extends Activity {
 				Button confirm_button = (Button) findViewById(R.id.roleaction_confirm_button);
 				confirm_button.setVisibility(View.VISIBLE);
 			}
+			// 選択可能なプレイヤーのリスト
+			mSelectablePlayers.clear();
+			for (Player player : mPlayers.getAlivePlayers()) {
+				if (player.getUID() != mPlayer.getUID()) {
+					mSelectablePlayers.add(player);
+				}
+			}
+			// リストビュー更新
+			ListView_update();
 		} catch (Exception e) {
 			ErrorReport.LogException(this, e);
 		}
@@ -108,7 +121,7 @@ public class NightRoleActivity extends Activity {
 	private void ListView_update() {
 		Log.i(TAG, "ListView_update");
 		try {
-			ListView listView_players = (ListView) findViewById(R.id.vote_action_players_listView);
+			ListView listView_players = (ListView) findViewById(R.id.roleaction_listView_players);
 			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 					android.R.layout.simple_list_item_checked);
 			for (int i = 0; i < mSelectablePlayers.size(); i++) {
@@ -177,6 +190,23 @@ public class NightRoleActivity extends Activity {
 					ErrorReport.LogException(NightRoleActivity.this, e);
 				}
 			}
+		}
+	}
+
+	// 殺されたプレイヤーの行動
+	public void gameOverPlayer() {
+		Log.i(TAG, "gameOverPlayer");
+		try {
+			setContentView(R.layout.activity_gameover);
+			TextView content_textView = (TextView) findViewById(R.id.gameover_content_textView);
+			String message = "";
+			for (Player player : mPlayers.getPlayingPlayers()) {
+				message += player.getName() + " - " + player.getRoleName(this) + "\n";
+			}
+			content_textView.setText(message);
+			mPlayer.setStatus(STATUS.Died);
+		} catch (Exception e) {
+			ErrorReport.LogException(this, e);
 		}
 	}
 

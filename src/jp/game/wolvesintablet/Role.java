@@ -118,9 +118,9 @@ public class Role extends Porson {
 	public String getRolesMessage(Context context) {
 		try {
 			Resources resource = context.getResources();
-			String[] roles_details = resource
+			String[] roles_messages = resource
 					.getStringArray(R.array.roles_messages);
-			return roles_details[mRole.ordinal()];
+			return roles_messages[mRole.ordinal()];
 		} catch (Exception e) {
 			ErrorReport.LogException(context, e);
 		}
@@ -130,9 +130,9 @@ public class Role extends Porson {
 	public String getRoleAction(Context context) {
 		try {
 			Resources resource = context.getResources();
-			String[] roles_details = resource
+			String[] roles_actions = resource
 					.getStringArray(R.array.roles_actions);
-			return roles_details[mRole.ordinal()];
+			return roles_actions[mRole.ordinal()];
 		} catch (Exception e) {
 			ErrorReport.LogException(context, e);
 		}
