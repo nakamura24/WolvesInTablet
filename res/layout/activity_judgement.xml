@@ -24,10 +24,19 @@
         android:textSize="@dimen/judgement_title_textSize" />
 
     <TextView
-        android:id="@+id/judgement_message_textView"
+        android:id="@+id/judgement_result_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/judgement_title_textView"
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/judgement_result_textSize" />
+
+    
+    <TextView
+        android:id="@+id/judgement_message_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/judgement_result_textView"
         android:layout_centerHorizontal="true"
         android:textSize="@dimen/judgement_message_textSize" />
 

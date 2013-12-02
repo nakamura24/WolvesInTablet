@@ -101,6 +101,7 @@
     <string name="judgement_revote_message_text">再投票になりました\n候補者は%sさんです</string>
     <string name="judgement_died_message_text">処刑された方は%sさんです</string>
     <string name="judgement_no_died_text">処刑された方はいません</string>
+    <string name="judgement_result_text">さん - %d票\n</string>
     
     <string-array name="roles_names">
         <item name="role_name_werewolf">人狼</item>

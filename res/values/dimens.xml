@@ -24,6 +24,7 @@
     <dimen name="noon_timer_textSize">80sp</dimen>
     <dimen name="vote_title_textSize">30sp</dimen>
     <dimen name="judgement_title_textSize">30sp</dimen>
+    <dimen name="judgement_result_textSize">20sp</dimen>
     <dimen name="judgement_message_textSize">20sp</dimen>
     <dimen name="night_title_textSize">30sp</dimen>
     <dimen name="roleaction_name_textSize">30sp</dimen>
