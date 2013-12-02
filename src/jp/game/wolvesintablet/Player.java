@@ -6,12 +6,12 @@ public class Player extends Role {
 	}
 
 	private STATUS mStatus;
-	private String mSelectedPlayer;
+	private long mSelectedPlayerUID;
 	private boolean mLover;
 	
 	public Player(){
 		this.mStatus = STATUS.Alive;
-		this.mSelectedPlayer = null;
+		this.mSelectedPlayerUID = 0;
 		this.mLover = false;
 	}
 
@@ -23,12 +23,12 @@ public class Player extends Role {
 		this.mStatus = status;
 	}
 
-	public String getSelectedPlayer() {
-		return this.mSelectedPlayer;
+	public long getSelectedPlayerUID() {
+		return this.mSelectedPlayerUID;
 	}
 
-	public void setSelectedPlayer(String SelectedPlayer) {
-		this.mSelectedPlayer = SelectedPlayer;
+	public void setSelectedPlayerUID(long selectedPlayerUID) {
+		this.mSelectedPlayerUID = selectedPlayerUID;
 	}
 
 	public boolean getLover() {
