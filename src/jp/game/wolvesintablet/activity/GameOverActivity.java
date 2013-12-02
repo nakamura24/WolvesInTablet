@@ -9,7 +9,6 @@
 package jp.game.wolvesintablet.activity;
 
 import jp.game.wolvesintablet.*;
-import static jp.game.wolvesintablet.Constant.*;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,37 +16,35 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-public class MorningActivity extends Activity {
-	private static final String Tag = "MorningActivity";
-	private GameRule mGameRule;
+public class GameOverActivity extends Activity {
+	private static final String TAG = "GameOverActivity";
+	private Players mPlayers;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		Log.i(Tag, "onCreate");
+		Log.i(TAG, "onCreate");
 		super.onCreate(savedInstanceState);
 		try {
-			setContentView(R.layout.activity_morning);
+			setContentView(R.layout.activity_gameover);
 
-			mGameRule = GameRule.getInstance();
-			TextView textView_message = (TextView) findViewById(R.id.moning_message_textView);
-			textView_message.setText(mGameRule.getMoningMassage(this));
-			mGameRule.incrementDays();
+			mPlayers = Players.getInstance();
+			String message = "";
+//			TextView title_textView = (TextView) findViewById(R.id.gameover_title_textView);
+			TextView content_textView = (TextView) findViewById(R.id.gameover_content_textView);
+			for (Player player : mPlayers.getPlayingPlayers()) {
+				message += player.getName() + " - " + player.getRoleName(this) + "\n";
+			}
+			content_textView.setText(message);
 		} catch (Exception e) {
 			ErrorReport.LogException(this, e);
 		}
 	}
 
 	public void onClickOkButton(View view) {
-		Log.i(Tag, "onClickOkButton");
+		Log.i(TAG, "onClickOkButton");
 		try {
-			Players players = Players.getInstance();
-			if (players.checkGameOver(this) == GameOver_Continue) {
-				Intent intent = new Intent(this, NoonActivity.class);
-				startActivity(intent);
-			} else {
-				Intent intent = new Intent(this, GameOverActivity.class);
-				startActivity(intent);
-			}
+			Intent intent = new Intent(this, MainActivity.class);
+			startActivity(intent);
 		} catch (Exception e) {
 			ErrorReport.LogException(this, e);
 		}

@@ -41,7 +41,7 @@ public class VoteActivity extends Activity {
 			mPlayers = Players.getInstance();
 			players = new boolean[mPlayers.getPlayingPlayers().size()];
 			for (int i = 0; i < players.length; i++) {
-				if (mPlayers.getPlayingPlayers().get(i).getStatus() == STATUS.Died) {
+				if (mPlayers.getPlayingPlayers().get(i).getStatus() != STATUS.Alive) {
 					players[i] = true;
 				}
 			}
@@ -83,9 +83,7 @@ public class VoteActivity extends Activity {
 		Log.i(TAG, "onActivityResult");
 		try {
 			switch (requestCode) {
-			case ACTIVITY_ROLEVIEW:
-				break;
-			case ACTIVITY_ROLEACTION:
+			case ACTIVITY_VOTE_ACTION:
 				break;
 			}
 			// リストビュー更新
@@ -107,14 +105,8 @@ public class VoteActivity extends Activity {
 	public void onClickOkButton(View view) {
 		Log.i(TAG, "onClickOkButton");
 		try {
-			// 夜が終わった時の処理
-			// if (mGameRule.getDays() > 1) {
-			// mPlayers.nightAction();
-			// } else {
-			// mPlayers.inclementDays();
-			// }
-//			Intent intent = new Intent(this, MorningActivity.class);
-//			startActivity(intent);
+			Intent intent = new Intent(this, JudgementActivity.class);
+			startActivity(intent);
 		} catch (Exception e) {
 			ErrorReport.LogException(this, e);
 		}
@@ -171,11 +163,11 @@ public class VoteActivity extends Activity {
 				Log.i(TAG, "onClick");
 				try {
 					players[mPosition] = true;
-//					Intent intent = new Intent(VoteActivity.this,
-//							RoleViewActivity.class);
-//					intent.putExtra(Intent_RoleView_UID, mPlayers
-//							.getPlayingPlayer(mPosition).getUID());
-//					startActivityForResult(intent, ACTIVITY_ROLEVIEW);
+					Intent intent = new Intent(VoteActivity.this,
+							VoteActionActivity.class);
+					intent.putExtra(Intent_RoleView_UID, mPlayers
+							.getPlayingPlayers().get(mPosition).getUID());
+					startActivityForResult(intent, ACTIVITY_VOTE_ACTION);
 				} catch (ActivityNotFoundException e) {
 					ErrorReport.LogException(VoteActivity.this, e);
 				}

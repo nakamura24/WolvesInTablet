@@ -114,4 +114,38 @@ public class Role extends Porson {
 		}
 		return null;
 	}
+
+	public String getRolesMessage(Context context) {
+		try {
+			Resources resource = context.getResources();
+			String[] roles_messages = resource
+					.getStringArray(R.array.roles_messages);
+			return roles_messages[mRole.ordinal()];
+		} catch (Exception e) {
+			ErrorReport.LogException(context, e);
+		}
+		return null;
+	}
+
+	public String getRoleAction(Context context) {
+		try {
+			Resources resource = context.getResources();
+			String[] roles_actions = resource
+					.getStringArray(R.array.roles_actions);
+			return roles_actions[mRole.ordinal()];
+		} catch (Exception e) {
+			ErrorReport.LogException(context, e);
+		}
+		return null;
+	}
+
+	public boolean checkRoleOptionAction() {
+		switch(mRole){
+		case Medium:
+			return true;
+		default:
+			break;
+		}
+		return false;
+	}
 }

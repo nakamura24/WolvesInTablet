@@ -91,9 +91,9 @@ public class NightActivity extends Activity {
 		Log.i(TAG, "onActivityResult");
 		try {
 			switch (requestCode) {
-			case ACTIVITY_ROLEVIEW:
+			case ACTIVITY_ROLE_VIEW:
 				break;
-			case ACTIVITY_ROLEACTION:
+			case ACTIVITY_ROLE_ACTION:
 				break;
 			}
 			// リストビュー更新
@@ -180,10 +180,10 @@ public class NightActivity extends Activity {
 				try {
 					players[mPosition] = true;
 					Intent intent = new Intent(NightActivity.this,
-							RoleViewActivity.class);
+							NightRoleActivity.class);
 					intent.putExtra(Intent_RoleView_UID, mPlayers
 							.getPlayingPlayers().get(mPosition).getUID());
-					startActivityForResult(intent, ACTIVITY_ROLEVIEW);
+					startActivityForResult(intent, ACTIVITY_ROLE_VIEW);
 				} catch (ActivityNotFoundException e) {
 					ErrorReport.LogException(NightActivity.this, e);
 				}

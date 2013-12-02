@@ -21,7 +21,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="@string/night_title_textView" />
+        android:text="@string/night_title_textView"
+        android:textSize="@dimen/night_title_textSize" />
 
     <ListView
         android:id="@+id/night_players_listView"
