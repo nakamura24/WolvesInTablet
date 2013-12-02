@@ -43,7 +43,7 @@ public class JudgementActivity extends Activity {
 	public void onClickOkButton(View view) {
 		Log.i(TAG, "onClickOkButton");
 		try {
-			if (mGameRule.getVotedUIDs().size() > 0) {
+			if (mGameRule.getVotedPlayers().size() > 0) {
 				Intent intent = new Intent(this, VoteActivity.class);
 				startActivity(intent);
 			} else {

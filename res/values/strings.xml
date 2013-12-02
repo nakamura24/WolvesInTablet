@@ -102,7 +102,7 @@
     <string name="judgement_died_message_text">処刑された方は%sさんです</string>
     <string name="judgement_no_died_text">処刑された方はいません</string>
     <string name="judgement_result_text">さん - %d票\n</string>
-    
+
     <string-array name="roles_names">
         <item name="role_name_werewolf">人狼</item>
         <item name="role_name_villager">村人</item>
@@ -227,5 +227,14 @@
         <item>%sさんに投票しますか？</item>
         <item>%sさんに投票しますか？</item>
     </string-array>
-    
+    <string-array name="gameover_winners">
+        <item>【村人側の勝利】</item>
+        <item>【人狼側の勝利】</item>
+        <item>【ハムスター変化の勝利】</item>
+        <item>【悪魔の勝利】</item>
+        <item>【カルト教団の勝利】</item>
+        <item>【道化師の勝利】</item>
+        <item>【恋人達の勝利】</item>
+    </string-array>
+
 </resources>

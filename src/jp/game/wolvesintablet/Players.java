@@ -11,13 +11,20 @@ import java.util.Random;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.res.Resources;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
 public class Players {
 	private static final String TAG = "Players";
 	private static Players instance = new Players();
+
+	public enum WINNER {
+		Villagers, Werewolves, Werehamsters, Devils, Cultists, Mystics, Lovers
+	}
+
 	private ArrayList<Player> mPlayers = new ArrayList<Player>();
+	private WINNER mWinners;
 
 	public static Players getInstance() {
 		return instance;
@@ -255,19 +262,39 @@ public class Players {
 			for (Player player : mPlayers) {
 				switch (player.getRole()) {
 				case Werewolf:
-					if(player.getStatus() == STATUS.Alive) werewolf++;
+					if (player.getStatus() == STATUS.Alive)
+						werewolf++;
 					break;
 				default:
-					if(player.getStatus() == STATUS.Alive) villager++;
+					if (player.getStatus() == STATUS.Alive)
+						villager++;
 					break;
 				}
 			}
-			if(werewolf <= 0 || werewolf >= villager){
+			if (werewolf <= 0) {
+				mWinners = WINNER.Villagers;
+				return GameOver_GameOver;
+			}
+			if (werewolf >= villager) {
+				mWinners = WINNER.Werewolves;
 				return GameOver_GameOver;
 			}
 		} catch (Exception e) {
 			ErrorReport.LogException(context, e);
 		}
 		return GameOver_Continue;
+	}
+
+	public String getWinners(Context context) {
+		Log.i(TAG, "getWinners");
+		try {
+			Resources resource = context.getResources();
+			String[] gameover_winners = resource
+					.getStringArray(R.array.gameover_winners);
+			return gameover_winners[mWinners.ordinal()];
+		} catch (Exception e) {
+			ErrorReport.LogException(context, e);
+		}
+		return "";
 	}
 }
