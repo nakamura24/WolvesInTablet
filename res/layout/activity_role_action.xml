@@ -19,14 +19,16 @@
         android:id="@+id/roleaction_name_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/roleaction_name_textSize" />
 
     <TextView
         android:id="@+id/roleaction_message_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/roleaction_name_textView"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/roleaction_message_textSize" />
 
     <Button
         android:id="@+id/roleaction_confirm_button"

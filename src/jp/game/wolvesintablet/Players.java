@@ -255,7 +255,7 @@ public class Players {
 					break;
 				}
 			}
-			if(villager <= 0 || werewolf >= villager){
+			if(werewolf <= 0 || werewolf >= villager){
 				return GameOver_GameOver;
 			}
 		} catch (Exception e) {

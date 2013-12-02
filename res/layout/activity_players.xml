@@ -15,52 +15,60 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin" >
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:onClick="onClickAddButton"
-        android:text="@string/players_add_button" />
-
     <RelativeLayout
         android:id="@+id/players_all_relativeLayout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" >
 
-        <TextView
-            android:id="@+id/players_all_textView"
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="@string/players_all_textView" />
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:onClick="onClickAddButton"
+            android:text="@string/players_add_button" />
 
-        <ToggleButton
-            android:id="@+id/players_all_toggleButton"
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/players_all_textView"
-            android:onClick="onClickAllButton" />
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" >
+
+            <TextView
+                android:id="@+id/players_all_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/players_all_textView"
+                android:textSize="@dimen/players_all_textSize" />
+
+            <ToggleButton
+                android:id="@+id/players_all_toggleButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/players_all_textView"
+                android:onClick="onClickAllButton" />
+        </RelativeLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:onClick="onClickDelButton"
+            android:text="@string/players_del_button" />
     </RelativeLayout>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:onClick="onClickDelButton"
-        android:text="@string/players_del_button" />
 
     <ListView
         android:id="@+id/players_players_listView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/ok_button"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/players_all_relativeLayout"
-        android:layout_above="@+id/ok_button"
         android:choiceMode="multipleChoice" />
 
     <Button
