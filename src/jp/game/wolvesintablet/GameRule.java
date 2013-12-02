@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import jp.game.wolvesintablet.Player.STATUS;
+
 import android.content.Context;
 import android.content.res.Resources;
 
@@ -15,7 +17,7 @@ public class GameRule {
 	private int mDays;
 	private ArrayList<Player> mKillPlayers = new ArrayList<Player>();
 	// private ArrayList<Player> mOwlPlayers = new ArrayList<Player>();
-	private String LynchedPlayer = null;
+	private long LynchedPlayerUID = 0;
 	private ArrayList<Long> mVotedUIDs = new ArrayList<Long>();
 	private HashMap<Long, Integer> mVotes = new HashMap<Long, Integer>();
 
@@ -31,8 +33,12 @@ public class GameRule {
 		return this.mDays;
 	}
 
-	public String getLynchedPlayer() {
-		return LynchedPlayer;
+	public int incrementDays() {
+		return this.mDays++;
+	}
+
+	public long getLynchedPlayer() {
+		return LynchedPlayerUID;
 	}
 
 	// 朝のメッセージ
@@ -108,14 +114,16 @@ public class GameRule {
 				.getString(R.string.judgement_revote_message_text);
 		String died_message_text = resource
 				.getString(R.string.judgement_died_message_text);
-//		String no_died_text = resource
-//				.getString(R.string.judgement_no_died_text);
+		// String no_died_text = resource
+		// .getString(R.string.judgement_no_died_text);
 
 		// 過半数を超えている
 		if (entries.get(0).getValue() * 2 >= players.getAlivePlayers().size()) {
-			LynchedPlayer = players.getPlayer(entries.get(0).getKey())
-					.getName();
-			massage += died_message_text + LynchedPlayer;
+			LynchedPlayerUID = entries.get(0).getKey();
+			players.getPlayer(entries.get(0).getKey())
+					.setStatus(STATUS.Lynched);
+			massage += died_message_text
+					+ players.getPlayer(entries.get(0).getKey()).getName();
 			setVotedUIDs(new ArrayList<Player>());
 		} else {
 			ArrayList<Player> revotePlayers = new ArrayList<Player>();

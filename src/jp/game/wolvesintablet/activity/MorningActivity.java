@@ -31,6 +31,7 @@ public class MorningActivity extends Activity {
 			mGameRule = GameRule.getInstance();
 			TextView textView_message = (TextView) findViewById(R.id.moning_message_textView);
 			textView_message.setText(mGameRule.getMoningMassage(this));
+			mGameRule.incrementDays();
 		} catch (Exception e) {
 			ErrorReport.LogException(this, e);
 		}

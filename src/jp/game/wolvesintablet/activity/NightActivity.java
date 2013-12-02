@@ -180,7 +180,7 @@ public class NightActivity extends Activity {
 				try {
 					players[mPosition] = true;
 					Intent intent = new Intent(NightActivity.this,
-							RoleViewActivity.class);
+							NightRoleActivity.class);
 					intent.putExtra(Intent_RoleView_UID, mPlayers
 							.getPlayingPlayers().get(mPosition).getUID());
 					startActivityForResult(intent, ACTIVITY_ROLE_VIEW);

@@ -71,7 +71,6 @@ public final class R {
         public static final int witch=0x7f020022;
     }
     public static final class id {
-        public static final int confirm_button=0x7f080024;
         public static final int gameover_content_textView=0x7f080001;
         public static final int gameover_title_textView=0x7f080000;
         public static final int help_content_textView=0x7f080004;
@@ -106,6 +105,7 @@ public final class R {
         public static final int players_all_textView=0x7f08001a;
         public static final int players_all_toggleButton=0x7f08001b;
         public static final int players_players_listView=0x7f08001c;
+        public static final int roleaction_confirm_button=0x7f080024;
         public static final int roleaction_listView_players=0x7f080025;
         public static final int roleaction_message_textView=0x7f080023;
         public static final int roleaction_name_textView=0x7f080022;
