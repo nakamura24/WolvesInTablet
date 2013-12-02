@@ -139,8 +139,8 @@ public class VoteActivity extends Activity {
 				// アラートダイアログのメッセージを設定します
 				Resources resource = getResources();
 				String message = resource.getString(R.string.vote_action_text);
-				message = String.format(message,
-						mPlayers.getPlayingPlayers().get(position).getName());
+				message = String.format(message, mPlayers.getPlayingPlayers()
+						.get(position).getName());
 				alertDialogBuilder.setMessage(message);
 				// アラートダイアログの肯定ボタンがクリックされた時に呼び出されるコールバックリスナーを登録します
 				alertDialogBuilder.setNegativeButton(R.string.common_text_ok,

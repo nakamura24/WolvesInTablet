@@ -8,10 +8,8 @@
  */
 package jp.game.wolvesintablet;
 
-import static jp.game.wolvesintablet.Constant.*;
-
 import java.lang.Thread.UncaughtExceptionHandler;
-
+import static jp.game.wolvesintablet.Constant.*;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -106,7 +104,8 @@ public class ErrorReport implements UncaughtExceptionHandler {
 			// バグレポートの内容を読み込みます。
 			final SharedPreferences sharedPreferences = PreferenceManager
 					.getDefaultSharedPreferences(context);
-			final String report = sharedPreferences.getString(ErrorReportKey, null);
+			final String report = sharedPreferences.getString(ErrorReportKey,
+					null);
 			if (report == null) {
 				return;
 			}

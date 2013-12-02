@@ -1,3 +1,11 @@
+/* Copyright (C) 2013 M.Nakamura
+ *
+ * This software is licensed under a Creative Commons
+ * Attribution-NonCommercial-ShareAlike 2.1 Japan License.
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 		http://creativecommons.org/licenses/by-nc-sa/2.1/jp/legalcode
+ */
 package jp.game.wolvesintablet;
 
 import android.content.Context;
@@ -11,8 +19,8 @@ public class Role extends Porson {
 	private ROLE mRole;
 	private boolean mHilling;
 	private boolean mPoison;
-	
-	public Role(){
+
+	public Role() {
 		this.mRole = ROLE.Villager;
 		this.mHilling = false;
 		this.mPoison = false;
@@ -140,7 +148,7 @@ public class Role extends Porson {
 	}
 
 	public boolean checkRoleOptionAction() {
-		switch(mRole){
+		switch (mRole) {
 		case Medium:
 			return true;
 		default:

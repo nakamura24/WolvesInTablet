@@ -1,13 +1,19 @@
+/* Copyright (C) 2013 M.Nakamura
+ *
+ * This software is licensed under a Creative Commons
+ * Attribution-NonCommercial-ShareAlike 2.1 Japan License.
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 		http://creativecommons.org/licenses/by-nc-sa/2.1/jp/legalcode
+ */
 package jp.game.wolvesintablet;
 
+import java.util.ArrayList;
+import java.util.Random;
 import static jp.game.wolvesintablet.Constant.*;
 import jp.game.wolvesintablet.Player.STATUS;
 import jp.game.wolvesintablet.Porson.GENDER;
 import jp.game.wolvesintablet.Role.ROLE;
-
-import java.util.ArrayList;
-import java.util.Random;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
