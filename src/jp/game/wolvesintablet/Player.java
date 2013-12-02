@@ -1,3 +1,11 @@
+/* Copyright (C) 2013 M.Nakamura
+ *
+ * This software is licensed under a Creative Commons
+ * Attribution-NonCommercial-ShareAlike 2.1 Japan License.
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 		http://creativecommons.org/licenses/by-nc-sa/2.1/jp/legalcode
+ */
 package jp.game.wolvesintablet;
 
 public class Player extends Role {
@@ -8,8 +16,8 @@ public class Player extends Role {
 	private STATUS mStatus;
 	private long mSelectedPlayerUID;
 	private boolean mLover;
-	
-	public Player(){
+
+	public Player() {
 		this.mStatus = STATUS.Alive;
 		this.mSelectedPlayerUID = 0;
 		this.mLover = false;

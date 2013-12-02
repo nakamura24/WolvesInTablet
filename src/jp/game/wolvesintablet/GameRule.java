@@ -1,6 +1,12 @@
+/* Copyright (C) 2013 M.Nakamura
+ *
+ * This software is licensed under a Creative Commons
+ * Attribution-NonCommercial-ShareAlike 2.1 Japan License.
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 		http://creativecommons.org/licenses/by-nc-sa/2.1/jp/legalcode
+ */
 package jp.game.wolvesintablet;
-
-import jp.game.wolvesintablet.Player.STATUS;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 import java.util.Map.Entry;
-
+import jp.game.wolvesintablet.Player.STATUS;
 import android.content.Context;
 import android.content.res.Resources;
 import android.util.Log;
@@ -94,7 +100,8 @@ public class GameRule {
 				}
 				String doubt_message_text = resource
 						.getString(R.string.moning_doubt_message_text);
-				message += String.format(doubt_message_text, mDoutePlayer.getName());
+				message += String.format(doubt_message_text,
+						mDoutePlayer.getName());
 			}
 			return message;
 		} catch (Exception e) {
@@ -130,13 +137,15 @@ public class GameRule {
 				players.getPlayer(sortedVotes.get(0).getKey()).setStatus(
 						STATUS.Lynched);
 				massage = String.format(died_message_text,
-						players.getPlayer(sortedVotes.get(0).getKey()).getName());
+						players.getPlayer(sortedVotes.get(0).getKey())
+								.getName());
 				setVotedPlayers(new ArrayList<Player>());
 			} else {
 				ArrayList<Player> revotePlayers = new ArrayList<Player>();
-				revotePlayers.add(players.getPlayer(sortedVotes.get(0).getKey()));
-				String voteable = players.getPlayer(sortedVotes.get(0).getKey())
-						.getName() + " ";
+				revotePlayers.add(players
+						.getPlayer(sortedVotes.get(0).getKey()));
+				String voteable = players
+						.getPlayer(sortedVotes.get(0).getKey()).getName() + " ";
 				int second = sortedVotes.get(1).getValue();
 				for (Entry<Long, Integer> sortedentry : sortedVotes) {
 					if (sortedentry.getValue() == second) {
@@ -201,15 +210,14 @@ public class GameRule {
 	private ArrayList<Map.Entry<Long, Integer>> sortVotes() {
 		ArrayList<Map.Entry<Long, Integer>> entries = new ArrayList<Map.Entry<Long, Integer>>(
 				mVotes.entrySet());
-		Collections.sort(entries,
-				new Comparator<Map.Entry<Long, Integer>>() {
-					@Override
-					public int compare(Entry<Long, Integer> entry1,
-							Entry<Long, Integer> entry2) {
-						return ((Integer) entry2.getValue())
-								.compareTo((Integer) entry1.getValue());
-					}
-				});
+		Collections.sort(entries, new Comparator<Map.Entry<Long, Integer>>() {
+			@Override
+			public int compare(Entry<Long, Integer> entry1,
+					Entry<Long, Integer> entry2) {
+				return ((Integer) entry2.getValue()).compareTo((Integer) entry1
+						.getValue());
+			}
+		});
 		return entries;
 	}
 }

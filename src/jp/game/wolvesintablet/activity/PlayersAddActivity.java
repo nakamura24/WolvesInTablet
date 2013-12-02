@@ -39,7 +39,8 @@ public class PlayersAddActivity extends Activity {
 			RadioButton radio_male = (RadioButton) findViewById(R.id.players_add_male_radioButton);
 			// 画面の終了
 			Intent intent = new Intent();
-			intent.putExtra(Intent_Players_Add_Name, editText_player.getText().toString());
+			intent.putExtra(Intent_Players_Add_Name, editText_player.getText()
+					.toString());
 			intent.putExtra(Intent_Players_Add_Gender, radio_male.isChecked());
 			setResult(RESULT_OK, intent);
 			finish();

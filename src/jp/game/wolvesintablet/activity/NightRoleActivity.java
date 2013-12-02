@@ -201,7 +201,8 @@ public class NightRoleActivity extends Activity {
 			TextView content_textView = (TextView) findViewById(R.id.gameover_content_textView);
 			String message = "";
 			for (Player player : mPlayers.getPlayingPlayers()) {
-				message += player.getName() + " - " + player.getRoleName(this) + "\n";
+				message += player.getName() + " - " + player.getRoleName(this)
+						+ "\n";
 			}
 			content_textView.setText(message);
 			mPlayer.setStatus(STATUS.Died);

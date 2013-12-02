@@ -15,11 +15,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 
-public class JudgementActivity extends Activity {
-	private static final String TAG = "JudgementActivity";
+public class NightOptionActivity extends Activity {
+	private static final String TAG = "NightRoleActivity";
 	private Players mPlayers;
+	private Player mPlayer;
 	private GameRule mGameRule;
 
 	@Override
@@ -27,15 +27,29 @@ public class JudgementActivity extends Activity {
 		Log.i(TAG, "onCreate");
 		super.onCreate(savedInstanceState);
 		try {
-			setContentView(R.layout.activity_judgement);
-			mGameRule = GameRule.getInstance();
 			mPlayers = Players.getInstance();
+			mGameRule = GameRule.getInstance();
+			Intent intent = getIntent();
+			long UID = intent.getLongExtra(Intent_RoleView_UID, 0);
+			mPlayer = mPlayers.getPlayer(UID);
+			if (mPlayer == null) {
+				// 画面の終了
+				Intent finishIntent = new Intent();
+				setResult(RESULT_OK, finishIntent);
+				finish();
+			}
+		} catch (Exception e) {
+			ErrorReport.LogException(this, e);
+		}
+	}
 
-			TextView textView_player = (TextView) findViewById(R.id.judgement_message_textView);
-			textView_player.setText(mGameRule.getJudgementMassage(this,
-					mPlayers));
-			TextView result_textView = (TextView) findViewById(R.id.judgement_result_textView);
-			result_textView.setText(mGameRule.getVoteResult());
+	public void onClickRoleImage(View view) {
+		Log.i(TAG, "onClickRoleImage");
+		try {
+			// 画面の終了
+			Intent intent = new Intent();
+			setResult(RESULT_OK, intent);
+			finish();
 		} catch (Exception e) {
 			ErrorReport.LogException(this, e);
 		}
@@ -44,18 +58,10 @@ public class JudgementActivity extends Activity {
 	public void onClickOkButton(View view) {
 		Log.i(TAG, "onClickOkButton");
 		try {
-			if (mGameRule.getVotedPlayers().size() > 0) {
-				Intent intent = new Intent(this, VoteActivity.class);
-				startActivity(intent);
-			} else {
-				if (mPlayers.checkGameOver(this) == GameOver_Continue) {
-					Intent intent = new Intent(this, NightActivity.class);
-					startActivity(intent);
-				} else {
-					Intent intent = new Intent(this, GameOverActivity.class);
-					startActivity(intent);
-				}
-			}
+			// 画面の終了
+			Intent intent = new Intent();
+			setResult(RESULT_OK, intent);
+			finish();
 		} catch (Exception e) {
 			ErrorReport.LogException(this, e);
 		}

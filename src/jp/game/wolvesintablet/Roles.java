@@ -8,11 +8,9 @@
  */
 package jp.game.wolvesintablet;
 
+import java.util.HashMap;
 import jp.game.wolvesintablet.Role.ROLE;
 import static jp.game.wolvesintablet.Constant.*;
-
-import java.util.HashMap;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;

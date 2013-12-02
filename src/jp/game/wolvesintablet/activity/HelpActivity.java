@@ -28,14 +28,17 @@ public class HelpActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		try {
 			setContentView(R.layout.activity_help);
-			
+
 			Resources resource = getResources();
-			String textView_version = resource.getString(R.string.help_version_textView);
-			
+			String textView_version = resource
+					.getString(R.string.help_version_textView);
+
 			PackageInfo packageInfo = null;
-			TextView help_textView_version = (TextView)findViewById(R.id.help_version_textView);
-			packageInfo = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_META_DATA);
-			help_textView_version.setText(String.format(textView_version, packageInfo.versionName));
+			TextView help_textView_version = (TextView) findViewById(R.id.help_version_textView);
+			packageInfo = getPackageManager().getPackageInfo(getPackageName(),
+					PackageManager.GET_META_DATA);
+			help_textView_version.setText(String.format(textView_version,
+					packageInfo.versionName));
 		} catch (Exception e) {
 			ErrorReport.LogException(this, e);
 		}
