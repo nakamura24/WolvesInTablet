@@ -41,7 +41,7 @@ public class VoteActivity extends Activity {
 			mPlayers = Players.getInstance();
 			players = new boolean[mPlayers.getPlayingPlayers().size()];
 			for (int i = 0; i < players.length; i++) {
-				if (mPlayers.getPlayingPlayers().get(i).getStatus() == STATUS.Died) {
+				if (mPlayers.getPlayingPlayers().get(i).getStatus() != STATUS.Alive) {
 					players[i] = true;
 				}
 			}

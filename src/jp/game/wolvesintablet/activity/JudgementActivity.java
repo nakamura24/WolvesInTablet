@@ -33,6 +33,8 @@ public class JudgementActivity extends Activity {
 
 			TextView textView_player = (TextView) findViewById(R.id.judgement_message_textView);
 			textView_player.setText(mGameRule.getJudgementMassage(this, mPlayers));
+			TextView result_textView = (TextView) findViewById(R.id.judgement_result_textView);
+			result_textView.setText(mGameRule.getVoteResult());
 		} catch (Exception e) {
 			ErrorReport.LogException(this, e);
 		}
