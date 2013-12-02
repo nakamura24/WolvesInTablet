@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="jp.game.wolvesintablet"
     android:versionCode="1"
-    android:versionName="0.0.1" >
+    android:versionName="0.0.2" >
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -36,6 +36,7 @@
             android:name=".activity.RoleViewActivity"
             android:theme="@style/Theme.Dialog" />
         <activity android:name=".activity.MorningActivity" />
+        <activity android:name=".activity.GameOverActivity" />
         <activity android:name=".activity.NoonActivity" />
         <activity android:name=".activity.VoteActivity" />
         <activity android:name=".activity.VoteActionActivity" />

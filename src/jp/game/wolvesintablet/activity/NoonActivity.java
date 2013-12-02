@@ -23,6 +23,8 @@ import android.widget.TextView;
 public class NoonActivity extends Activity {
 	private static final String TAG = "NoonActivity";
 	private int time = Noon_Debate_Time;
+	private Players mPlayers;
+	private GameRule mGameRule;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,8 @@ public class NoonActivity extends Activity {
 		try {
 			setContentView(R.layout.activity_noon);
 
+			mPlayers = Players.getInstance();
+			mGameRule = GameRule.getInstance();
 			time = 3;
 			String timer_format = "%d:%02d";
 			String timer_text = String.format(timer_format, time, 0);
@@ -104,9 +108,7 @@ public class NoonActivity extends Activity {
 		Log.i(TAG, "onClickOkButton");
 		try {
 			// 投票の前に設定
-			Players players = Players.getInstance();
-			GameRule gameRule = GameRule.getInstance();
-			gameRule.setVotedUIDs(players.getAlivePlayers());
+			mGameRule.setVotedUIDs(mPlayers.getAlivePlayers());
 			
 			Intent intent = new Intent(this, VoteActivity.class);
 			startActivity(intent);

@@ -51,7 +51,7 @@ public class Players {
 	public ArrayList<Player> getAlivePlayers() {
 		ArrayList<Player> players = new ArrayList<Player>();
 		for (Player player : mPlayers) {
-			if (player.getStatus() != STATUS.Alive) {
+			if (player.getStatus() == STATUS.Alive) {
 				players.add(player);
 			}
 		}

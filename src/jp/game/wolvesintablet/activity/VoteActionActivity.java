@@ -25,6 +25,7 @@ import android.widget.ListView;
 
 public class VoteActionActivity extends Activity {
 	private static final String TAG = "VoteActionActivity";
+	private Players mPlayers;
 	private GameRule mGameRule;
 
 	@Override
@@ -34,6 +35,7 @@ public class VoteActionActivity extends Activity {
 		try {
 			setContentView(R.layout.activity_vote_action);
 			mGameRule = GameRule.getInstance();
+			mPlayers = Players.getInstance();
 
 			// リストビュー更新
 			ListView_update();
@@ -48,9 +50,10 @@ public class VoteActionActivity extends Activity {
 		try {
 			ListView listView_players = (ListView) findViewById(R.id.vote_action_players_listView);
 			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-					android.R.layout.simple_list_item_single_choice);
-			for (int i = 0; i < mGameRule.getVotedPlayers().size(); i++) {
-				adapter.add(mGameRule.getVotedPlayers().get(i).getName());
+					android.R.layout.simple_list_item_checked);
+			for (int i = 0; i < mGameRule.getVotedUIDs().size(); i++) {
+				adapter.add(mPlayers.getPlayer(mGameRule.getVotedUIDs().get(i))
+						.getName());
 			}
 			listView_players.setAdapter(adapter);
 			listView_players.setItemsCanFocus(false);
@@ -73,9 +76,12 @@ public class VoteActionActivity extends Activity {
 						VoteActionActivity.this);
 				// アラートダイアログのメッセージを設定します
 				Resources resource = getResources();
-				String message = resource.getString(R.string.vote_action_text);
-				message = String.format(message, mGameRule.getVotedPlayers()
-						.get(position).getName());
+				String message = resource.getString(R.string.vote_action_execute_text);
+				message = String.format(
+						message,
+						mPlayers.getPlayer(
+								mGameRule.getVotedUIDs().get(position))
+								.getName());
 				alertDialogBuilder.setMessage(message);
 				// アラートダイアログの肯定ボタンがクリックされた時に呼び出されるコールバックリスナーを登録します
 				alertDialogBuilder.setNegativeButton(R.string.common_text_ok,
@@ -97,8 +103,8 @@ public class VoteActionActivity extends Activity {
 			public void onClick(DialogInterface dialog, int which) {
 				Log.i(TAG, "onClick");
 				try {
-					mGameRule.votePlayer(mGameRule.getVotedPlayers()
-							.get(mPosition).getUID());
+					mGameRule.votePlayer(mGameRule.getVotedUIDs()
+							.get(mPosition));
 					// 画面の終了
 					Intent intent = new Intent();
 					setResult(RESULT_OK, intent);

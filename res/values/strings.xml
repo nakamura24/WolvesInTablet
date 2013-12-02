@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">タブレット人狼</string>
+    <string name="app_name">Wolves In Tablet</string>
     <string name="common_text_ok">ＯＫ</string>
     <string name="common_text_cancel">キャンセル</string>
     <string name="common_text_warning">警告</string>
@@ -32,12 +32,11 @@
 日本においてもっとも普及しているイタリアのdaVinci社が販売している「Lupus in Tabula（タブラの狼）」がベースになっている。\n
 「Lupus in Tabula」にある基本の３種類と８種類の特殊な役職に加え、「ミラーズホロウの人狼」や「究極の人狼」等を参考にした１８種類の独自の役職がある。\n
 このゲームは役職の人数を自由に変えることができる。また、設定された人数の範囲内でランダムな人数を出現させることもできる（人狼や預言者が何人いるか判らない状態でプレーする事ができる）。\n
-TextToSpeech（N2 TTSが無料で利用可能）が入っているとメッセージを喋る。\n\n
 基本的な遊び方\n
 プレイヤーはそれぞれが村人と村人に化けた人狼となり、自分自身の正体がばれないように他のプレイヤーと交渉して正体を探る。\n
 ゲームは半日単位で進行し、昼には全プレイヤーの投票により決まった人狼容疑者の処刑が、夜には人狼による村人の捕食が行われる。\n
 昼と夜を繰り返し、ゲーム終了条件がどれか一つ満たされた時点で、ゲーム終了となる。\n
-４人での遊び方(ワンナイト人狼)はダミープレイヤー２人、人狼１人、盗賊１人を追加する。その他は適当。最初の夜にダミープレイヤーを確認し、人狼がいればやり直す。\n
+４人での遊び方(ワンナイト人狼)はダミープレイヤー２人を追加する。その他は適当。最初の夜にダミープレイヤーを確認し、人狼がいればやり直す。\n
 二日目の昼にダミープレイヤーを処刑し、その夜の間に人狼はもう一人のダミープレイヤーを殺す。預言者はダミープレイヤーを占う。ゲームは三日目の昼から開始する。\n\n
 ゲーム終了条件\n
 【村人側の勝利】人狼がすべて死亡した\n
@@ -87,9 +86,9 @@ TextToSpeech（N2 TTSが無料で利用可能）が入っているとメッセ�
     <string name="night_title_textView">第%d夜</string>
     <string name="night_action_text">%sさんの夜の行動を実行します</string>
     <string name="moning_title_textView">夜が明け朝になりました</string>
-    <string name="moning_died_message_textView">亡くなった方は%sさんです\n</string>
-    <string name="moning_no_died_textView">亡くなった方はいません\n</string>
-    <string name="moning_doubt_message_textView">疑われている方は%sさんです</string>
+    <string name="moning_died_message_text">亡くなった方は%sさんです\n</string>
+    <string name="moning_no_died_text">亡くなった方はいません\n</string>
+    <string name="moning_doubt_message_text">疑われている方は%sさんです</string>
     <string name="noon_title_textView">お昼になりました</string>
     <string name="noon_message_textView">疑わしい人を話し合って探してください。投票は過半数を超える票を集める人がでるまで、再投票します。再投票は上位２名と２位と同票の人です。</string>
     <string name="noon_inclement_button">＋</string>
@@ -97,10 +96,11 @@ TextToSpeech（N2 TTSが無料で利用可能）が入っているとメッセ�
     <string name="noon_start_button">スタート</string>
     <string name="vote_title_textView">投票</string>
     <string name="vote_action_text">%sさんが投票します</string>
+    <string name="vote_action_execute_text">%sさんに投票します</string>
     <string name="judgement_title_textView">審判</string>
-    <string name="judgement_revote_message_textView">再投票になりました\n候補者は%sさんです</string>
-    <string name="judgement_died_message_textView">処刑された方は%sさんです</string>
-    <string name="judgement_no_died_textView">処刑された方はいません</string>
+    <string name="judgement_revote_message_text">再投票になりました\n候補者は%sさんです</string>
+    <string name="judgement_died_message_text">処刑された方は%sさんです</string>
+    <string name="judgement_no_died_text">処刑された方はいません</string>
     
     <string-array name="roles_names">
         <item name="role_name_werewolf">人狼</item>

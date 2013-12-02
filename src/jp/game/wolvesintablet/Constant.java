@@ -37,6 +37,7 @@ public class Constant {
 	public static final int ACTIVITY_ROLES = 2;
 	public static final int ACTIVITY_HELP = 3;
 	public static final int ACTIVITY_OPENING = 1000;
-	public static final int ACTIVITY_ROLEVIEW = 2000;
-	public static final int ACTIVITY_ROLEACTION = 2001;
+	public static final int ACTIVITY_ROLE_VIEW = 2000;
+	public static final int ACTIVITY_ROLE_ACTION = 2001;
+	public static final int ACTIVITY_VOTE_ACTION = 3001;
 }

@@ -9,7 +9,6 @@
 package jp.game.wolvesintablet.activity;
 
 import jp.game.wolvesintablet.*;
-import static jp.game.wolvesintablet.Constant.*;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,22 +16,25 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-public class JudgementActivity extends Activity {
-	private static final String TAG = "JudgementActivity";
+public class GameOverActivity extends Activity {
+	private static final String TAG = "GameOverActivity";
 	private Players mPlayers;
-	private GameRule mGameRule;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		Log.i(TAG, "onCreate");
 		super.onCreate(savedInstanceState);
 		try {
-			setContentView(R.layout.activity_judgement);
-			mGameRule = GameRule.getInstance();
-			mPlayers = Players.getInstance();
+			setContentView(R.layout.activity_gameover);
 
-			TextView textView_player = (TextView) findViewById(R.id.judgement_message_textView);
-			textView_player.setText(mGameRule.getJudgementMassage(this, mPlayers));
+			mPlayers = Players.getInstance();
+			String message = "";
+//			TextView title_textView = (TextView) findViewById(R.id.gameover_title_textView);
+			TextView content_textView = (TextView) findViewById(R.id.gameover_content_textView);
+			for (Player player : mPlayers.getPlayingPlayers()) {
+				message += player.getName() + " - " + player.getRoleName(this) + "\n";
+			}
+			content_textView.setText(message);
 		} catch (Exception e) {
 			ErrorReport.LogException(this, e);
 		}
@@ -41,18 +43,8 @@ public class JudgementActivity extends Activity {
 	public void onClickOkButton(View view) {
 		Log.i(TAG, "onClickOkButton");
 		try {
-			if (mGameRule.getVotedUIDs().size() > 0) {
-				Intent intent = new Intent(this, VoteActivity.class);
-				startActivity(intent);
-			} else {
-				if (mPlayers.checkGameOver(this) == GameOver_Continue) {
-					Intent intent = new Intent(this, NightActivity.class);
-					startActivity(intent);
-				} else {
-					Intent intent = new Intent(this, GameOverActivity.class);
-					startActivity(intent);
-				}
-			}
+			Intent intent = new Intent(this, MainActivity.class);
+			startActivity(intent);
 		} catch (Exception e) {
 			ErrorReport.LogException(this, e);
 		}

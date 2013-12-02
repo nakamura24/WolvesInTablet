@@ -44,8 +44,8 @@ public class MorningActivity extends Activity {
 				Intent intent = new Intent(this, NoonActivity.class);
 				startActivity(intent);
 			} else {
-//				Intent intent = new Intent(this, GameOverActivity.class);
-//				startActivity(intent);
+				Intent intent = new Intent(this, GameOverActivity.class);
+				startActivity(intent);
 			}
 		} catch (Exception e) {
 			ErrorReport.LogException(this, e);
