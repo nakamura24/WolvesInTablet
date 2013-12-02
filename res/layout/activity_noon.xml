@@ -20,7 +20,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="@string/noon_title_textView" />
+        android:text="@string/noon_title_textView"
+        android:textSize="@dimen/noon_title_textSize" />
 
     <TextView
         android:id="@+id/noon_message_textView"
@@ -28,7 +29,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/noon_title_textView"
         android:layout_centerHorizontal="true"
-        android:text="@string/noon_message_textView" />
+        android:text="@string/noon_message_textView"
+        android:textSize="@dimen/noon_message_textSize" />
 
     <TextView
         android:id="@+id/noon_timer_textView"

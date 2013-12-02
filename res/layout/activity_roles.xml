@@ -31,7 +31,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="@string/roles_number_textView" />
+                android:text="@string/roles_number_textView"
+                android:textSize="@dimen/roles_number_textSize" />
 
             <Button
                 android:id="@+id/roles_max_button"
@@ -44,7 +45,7 @@
         </RelativeLayout>
 
         <RadioGroup
-            android:id="@+id/roles_radioGroup"
+            android:id="@+id/roles_random_radioGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/roles_header_relativeLayout"
@@ -74,7 +75,7 @@
             android:id="@+id/roles_tableLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/roles_radioGroup"
+            android:layout_below="@+id/roles_random_radioGroup"
             android:layout_centerHorizontal="true" >
         </TableLayout>
 

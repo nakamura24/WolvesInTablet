@@ -22,16 +22,34 @@ public final class R {
          */
         public static final int activity_horizontal_margin=0x7f040000;
         public static final int activity_vertical_margin=0x7f040001;
-        public static final int help_content_textSize=0x7f040009;
-        public static final int help_title_textSize=0x7f040007;
-        public static final int help_version_textSize=0x7f040008;
-        public static final int main_option_marginTop=0x7f040005;
+        public static final int gameover_content_textSize=0x7f04001d;
+        public static final int gameover_title_textSize=0x7f04001c;
+        public static final int help_content_textSize=0x7f04000c;
+        public static final int help_title_textSize=0x7f04000a;
+        public static final int help_version_textSize=0x7f04000b;
+        public static final int judgement_message_textSize=0x7f040015;
+        public static final int judgement_title_textSize=0x7f040014;
+        public static final int main_option_marginTop=0x7f040003;
         public static final int main_option_textSize=0x7f040006;
-        public static final int main_start_textSize=0x7f040004;
+        public static final int main_start_textSize=0x7f040005;
         public static final int main_title_marginBottom=0x7f040002;
-        public static final int main_title_textSize=0x7f040003;
-        public static final int noon_timer_textSize=0x7f04000b;
-        public static final int opening_message_textSize=0x7f04000a;
+        public static final int main_title_textSize=0x7f040004;
+        public static final int moning_message_textSize=0x7f04000f;
+        public static final int moning_title_textSize=0x7f04000e;
+        public static final int night_title_textSize=0x7f040016;
+        public static final int noon_message_textSize=0x7f040011;
+        public static final int noon_timer_textSize=0x7f040012;
+        public static final int noon_title_textSize=0x7f040010;
+        public static final int opening_message_textSize=0x7f04000d;
+        public static final int players_add_name_textSize=0x7f040008;
+        public static final int players_all_textSize=0x7f040007;
+        public static final int roleaction_message_textSize=0x7f040018;
+        public static final int roleaction_name_textSize=0x7f040017;
+        public static final int roles_number_textSize=0x7f040009;
+        public static final int roleview_description_textSize=0x7f04001a;
+        public static final int roleview_message_textSize=0x7f04001b;
+        public static final int roleview_name_textSize=0x7f040019;
+        public static final int vote_title_textSize=0x7f040013;
     }
     public static final class drawable {
         public static final int apothecary=0x7f020000;
@@ -113,8 +131,8 @@ public final class R {
         public static final int roles_max_button=0x7f08002c;
         public static final int roles_none_radioButton=0x7f08002e;
         public static final int roles_number_textView=0x7f08002b;
-        public static final int roles_radioGroup=0x7f08002d;
         public static final int roles_ramdam_radioButton=0x7f08002f;
+        public static final int roles_random_radioGroup=0x7f08002d;
         public static final int roles_tableLayout=0x7f080031;
         public static final int roles_werewolves_random_radioButton=0x7f080030;
         public static final int roleview_description_textView=0x7f080027;

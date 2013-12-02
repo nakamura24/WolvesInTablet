@@ -20,14 +20,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 		android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/roleview_name_textSize" />
     
     <TextView
         android:id="@+id/roleview_description_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/roleview_name_textView"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/roleview_description_textSize" />
 
     <ImageView
         android:id="@+id/roleview_role_imageView"
@@ -44,7 +46,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/roleview_role_imageView"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/roleview_message_textSize" />
     
 </RelativeLayout>
 
