@@ -122,24 +122,23 @@ public class GameRule {
 			LynchedPlayerUID = entries.get(0).getKey();
 			players.getPlayer(entries.get(0).getKey())
 					.setStatus(STATUS.Lynched);
-			massage += died_message_text
-					+ players.getPlayer(entries.get(0).getKey()).getName();
+			massage += String.format(died_message_text,
+					players.getPlayer(entries.get(0).getKey()).getName());
 			setVotedUIDs(new ArrayList<Player>());
 		} else {
 			ArrayList<Player> revotePlayers = new ArrayList<Player>();
 			revotePlayers.add(players.getPlayer(entries.get(0).getKey()));
-			massage += revote_message_text
-					+ players.getPlayer(entries.get(0).getKey()).getName()
-					+ "\n";
+			String voteable = players.getPlayer(entries.get(0).getKey())
+					.getName() + " ";
 			int second = entries.get(1).getValue();
 			for (Entry<Long, Integer> sortedentry : entries) {
 				if (sortedentry.getValue() == second) {
 					revotePlayers.add(players.getPlayer(sortedentry.getKey()));
-					massage += revote_message_text
-							+ players.getPlayer(sortedentry.getKey()).getName()
-							+ "\n";
+					voteable += players.getPlayer(sortedentry.getKey())
+							.getName() + " ";
 				}
 			}
+			massage += String.format(revote_message_text, voteable);
 			setVotedUIDs(revotePlayers);
 		}
 		return massage;
