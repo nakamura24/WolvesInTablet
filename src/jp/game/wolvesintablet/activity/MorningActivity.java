@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 public class MorningActivity extends Activity {
 	private static final String Tag = "MorningActivity";
+	private Players mPlayers;
 	private GameRule mGameRule;
 
 	@Override
@@ -28,9 +29,10 @@ public class MorningActivity extends Activity {
 		try {
 			setContentView(R.layout.activity_morning);
 
+			mPlayers = Players.getInstance();
 			mGameRule = GameRule.getInstance();
 			TextView textView_message = (TextView) findViewById(R.id.moning_message_textView);
-			textView_message.setText(mGameRule.getMoningMassage(this));
+			textView_message.setText(mGameRule.getMoningMassage(this, mPlayers));
 			mGameRule.incrementDays();
 		} catch (Exception e) {
 			ErrorReport.LogException(this, e);
