@@ -187,6 +187,7 @@ public class Players {
 		}
 	}
 
+	// 役割の割り振り
 	public void setRole() {
 		Log.i(TAG, "setRole");
 		int players = getPlayingPlayers().size();
@@ -225,6 +226,7 @@ public class Players {
 		}
 	}
 
+	// 役割の仲間を取得
 	public String getRolePartners(Context context, Player player) {
 		Log.i(TAG, "getRolePartners");
 		try {
@@ -259,7 +261,7 @@ public class Players {
 		return "";
 	}
 
-	//
+	// ゲームオーバーしているかのチェック
 	public int checkGameOver(Context context) {
 		Log.i(TAG, "checkGameOver");
 		try {
@@ -291,6 +293,7 @@ public class Players {
 		return GameOver_Continue;
 	}
 
+	// 勝利者のメッセージ取得
 	public String getWinners(Context context) {
 		Log.i(TAG, "getWinners");
 		try {

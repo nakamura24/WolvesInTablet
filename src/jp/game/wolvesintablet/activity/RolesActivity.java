@@ -26,6 +26,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+// 役職調整の処理
 public class RolesActivity extends Activity {
 	private static final String TAG = "RolesActivity";
 	private Roles mRoles;
@@ -39,6 +40,7 @@ public class RolesActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		try {
 			setContentView(R.layout.activity_roles);
+			
 			mPlayers = Players.getInstance();
 			mRoles = Roles.getInstance();
 

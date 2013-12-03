@@ -70,6 +70,9 @@ public class ErrorReport implements UncaughtExceptionHandler {
 		mDefaultHandler.uncaughtException(thread, ex);
 	}
 
+	/**
+	 * 例外用ログ
+	 */
 	public static void LogException(Context context, Exception ex) {
 		Log.i(TAG, "LogException");
 		try {
@@ -98,6 +101,9 @@ public class ErrorReport implements UncaughtExceptionHandler {
 		}
 	}
 
+	/**
+	 * メール送信の確認ダイアログ
+	 */
 	public static void SendBugReportDialog(final Context context) {
 		Log.i(TAG, "SendBugReportDialog");
 		try {

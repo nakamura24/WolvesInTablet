@@ -9,7 +9,6 @@
 package jp.game.wolvesintablet.activity;
 
 import jp.game.wolvesintablet.*;
-import jp.game.wolvesintablet.Role.ROLE;
 import static jp.game.wolvesintablet.Constant.*;
 import android.app.Activity;
 import android.content.Intent;
@@ -19,10 +18,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+//　夜の役割毎行動のオプション行動
 public class NightOptionActivity extends Activity {
 	private static final String TAG = "NightRoleActivity";
 	private Players mPlayers;
-	private Player mPlayer;
 	private GameRule mGameRule;
 
 	@Override
@@ -34,57 +33,15 @@ public class NightOptionActivity extends Activity {
 			mGameRule = GameRule.getInstance();
 			Intent intent = getIntent();
 			long UID = intent.getLongExtra(Intent_Player_UID, 0);
-			mPlayer = mPlayers.getPlayer(UID);
-			if (mPlayer == null) {
+			if (mPlayers.getPlayer(UID) == null) {
 				// 画面の終了
 				Intent finishIntent = new Intent();
 				setResult(RESULT_OK, finishIntent);
 				finish();
 			}
-			optionAction();
-		} catch (Exception e) {
-			ErrorReport.LogException(this, e);
-		}
-	}
-
-	public void optionAction() {
-		Log.i(TAG, "optionAction");
-		try {
-			Player selectedPlayer = new Player();
-			switch (mPlayer.getRole()) {
-			case Seer:
-				Log.d(TAG, "SelectedPlayerUID = " + mPlayer.getSelectedPlayerUID());
-				selectedPlayer = new Player(mPlayers.getPlayer(mPlayer
-						.getSelectedPlayerUID()));
-				if (selectedPlayer.getRole() != ROLE.Werewolf) {
-					selectedPlayer.setRole(ROLE.Villager);
-				}
-				roleView(selectedPlayer);
-				break;
-			case Medium:
-				Log.d(TAG, "LynchedPlayerUID = " + mGameRule.getLynchedPlayerUID());
-				selectedPlayer = new Player(mPlayers.getPlayer(mGameRule
-						.getLynchedPlayerUID()));
-				if (selectedPlayer.getRole() != ROLE.Werewolf) {
-					selectedPlayer.setRole(ROLE.Villager);
-				}
-				roleView(selectedPlayer);
-				break;
-			case Mythomaniac:
-				Log.d(TAG, "SelectedPlayerUID = " + mPlayer.getSelectedPlayerUID());
-				selectedPlayer = new Player(mPlayers.getPlayer(mPlayer
-						.getSelectedPlayerUID()));
-				if (selectedPlayer.getRole() == ROLE.Werewolf) {
-					mPlayer.setRole(ROLE.Werewolf);
-				} else if (selectedPlayer.getRole() == ROLE.Seer) {
-					mPlayer.setRole(ROLE.Seer);
-				} else {
-					mPlayer.setRole(ROLE.Villager);
-				}
-				roleView(mPlayer);
-				break;
-			default:
-				break;
+			Player player = mGameRule.optionAction(this, mPlayers, UID);
+			if(player != null){
+				roleView(player);
 			}
 		} catch (Exception e) {
 			ErrorReport.LogException(this, e);
@@ -110,18 +67,6 @@ public class NightOptionActivity extends Activity {
 
 	public void onClickRoleImage(View view) {
 		Log.i(TAG, "onClickRoleImage");
-		try {
-			// 画面の終了
-			Intent intent = new Intent();
-			setResult(RESULT_OK, intent);
-			finish();
-		} catch (Exception e) {
-			ErrorReport.LogException(this, e);
-		}
-	}
-
-	public void onClickOkButton(View view) {
-		Log.i(TAG, "onClickOkButton");
 		try {
 			// 画面の終了
 			Intent intent = new Intent();

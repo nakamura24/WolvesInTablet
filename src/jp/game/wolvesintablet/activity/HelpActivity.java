@@ -19,6 +19,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+//　ヘルプの処理
 public class HelpActivity extends Activity {
 	private static final String Tag = "HelpActivity";
 

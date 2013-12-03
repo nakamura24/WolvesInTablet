@@ -20,6 +20,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+//　昼の行動
 public class NoonActivity extends Activity {
 	private static final String TAG = "NoonActivity";
 	private int time = Noon_Debate_Time;
@@ -94,6 +95,7 @@ public class NoonActivity extends Activity {
 					String timer_text = String.format(timer_format, 0, 0);
 					TextView textView_timer = (TextView) findViewById(R.id.noon_timer_textView);
 					textView_timer.setText(timer_text);
+					// トーンを鳴らす
 					ToneGenerator toneGenerator = new ToneGenerator(
 							AudioManager.STREAM_SYSTEM,
 							ToneGenerator.MAX_VOLUME);
