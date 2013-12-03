@@ -73,6 +73,12 @@ public class Players {
 		return players;
 	}
 
+	public void initSelectedPlayers() {
+		for (Player player : mPlayers) {
+			player.setSelectedPlayerUID(0);
+		}
+	}
+
 	public void addPlayer(String Name, String Sound, GENDER Gender) {
 		Player player = new Player();
 		player.setUID(System.currentTimeMillis());
@@ -187,7 +193,7 @@ public class Players {
 		}
 	}
 
-	// 役割の割り振り
+	// 役職の割り振り
 	public void setRole() {
 		Log.i(TAG, "setRole");
 		int players = getPlayingPlayers().size();
@@ -226,7 +232,7 @@ public class Players {
 		}
 	}
 
-	// 役割の仲間を取得
+	// 役職の仲間を取得
 	public String getRolePartners(Context context, Player player) {
 		Log.i(TAG, "getRolePartners");
 		try {

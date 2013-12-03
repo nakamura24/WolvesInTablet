@@ -18,7 +18,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-//　夜の役割毎行動のオプション行動
+//　夜の役職毎行動のオプション行動
 public class NightOptionActivity extends Activity {
 	private static final String TAG = "NightRoleActivity";
 	private Players mPlayers;

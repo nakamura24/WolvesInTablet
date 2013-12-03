@@ -38,7 +38,7 @@ public class OpeningActivity extends Activity {
 			// プレイヤー人数の警告
 			playersAlertDialog();
 
-			// 役割を割り当てる
+			// 役職を割り当てる
 			mPlayers.setRole();
 		} catch (Exception e) {
 			ErrorReport.LogException(this, e);

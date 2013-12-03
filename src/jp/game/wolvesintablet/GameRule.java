@@ -169,6 +169,8 @@ public class GameRule {
 			// 疑われているプレイヤーを決定
 			ArrayList<Map.Entry<Long, Integer>> sortedVotes = sortVotes();
 			mDoutePlayer = players.getPlayer(sortedVotes.get(0).getKey());
+			// 選択IDを初期化
+			players.initSelectedPlayers();
 		} catch (Exception e) {
 			ErrorReport.LogException(context, e);
 		}

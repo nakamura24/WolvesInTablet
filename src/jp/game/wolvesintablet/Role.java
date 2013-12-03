@@ -68,7 +68,7 @@ public class Role extends Porson {
 		this.mPoison = Poison;
 	}
 
-	// 役割の画像IDを取得
+	// 役職の画像IDを取得
 	public int getRoleImageId(Context context) {
 		int id = 0;
 		try {
@@ -111,7 +111,7 @@ public class Role extends Porson {
 		return id;
 	}
 
-	// 役割名を取得
+	// 役職名を取得
 	public String getRoleName(Context context) {
 		try {
 			Resources resource = context.getResources();
@@ -123,7 +123,7 @@ public class Role extends Porson {
 		return null;
 	}
 
-	// 役割の説明を取得
+	// 役職の説明を取得
 	public String getRoleDetail(Context context) {
 		try {
 			Resources resource = context.getResources();
@@ -136,7 +136,7 @@ public class Role extends Porson {
 		return null;
 	}
 
-	// 役割の行動メッセージを取得
+	// 役職の行動メッセージを取得
 	public String getRolesMessage(Context context) {
 		try {
 			Resources resource = context.getResources();
@@ -149,7 +149,7 @@ public class Role extends Porson {
 		return null;
 	}
 
-	// 役割の行動確認メッセージを取得
+	// 役職の行動確認メッセージを取得
 	public String getRoleAction(Context context) {
 		try {
 			Resources resource = context.getResources();
@@ -162,7 +162,7 @@ public class Role extends Porson {
 		return null;
 	}
 
-	// 役割にオプション行動があるかチェック（選択前）
+	// 役職にオプション行動があるかチェック（選択前）
 	public boolean checkPreOptionAction() {
 		switch (mRole) {
 		case Medium:
@@ -173,7 +173,7 @@ public class Role extends Porson {
 		return false;
 	}
 
-	// 役割にオプション行動があるかチェック（選択後）
+	// 役職にオプション行動があるかチェック（選択後）
 	public boolean checkPostOptionAction() {
 		switch (mRole) {
 		case Seer:
