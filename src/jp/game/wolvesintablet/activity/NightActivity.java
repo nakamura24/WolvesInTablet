@@ -27,6 +27,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+// 夜の行動
 public class NightActivity extends Activity {
 	private static final String TAG = "NightActivity";
 	private Players mPlayers;
@@ -113,12 +114,6 @@ public class NightActivity extends Activity {
 	public void onClickOkButton(View view) {
 		Log.i(TAG, "onClickOkButton");
 		try {
-			// 夜が終わった時の処理
-			// if (mGameRule.getDays() > 1) {
-			// mPlayers.nightAction();
-			// } else {
-			// mPlayers.inclementDays();
-			// }
 			Intent intent = new Intent(this, MorningActivity.class);
 			startActivity(intent);
 		} catch (Exception e) {
@@ -126,6 +121,7 @@ public class NightActivity extends Activity {
 		}
 	}
 
+	// リストアイテムがクリックされた時の処理
 	private class ListViewOnItemClickListener implements OnItemClickListener {
 		int mPosition;
 

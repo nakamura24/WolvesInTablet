@@ -79,9 +79,6 @@ public class Roles {
 	private boolean mRolesRandom = false;
 	private boolean mWerewolvesRandom = false;
 
-	private Roles() {
-	}
-
 	public static Roles getInstance() {
 		return instance;
 	}

@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+// ゲームオーバーの処理
 public class GameOverActivity extends Activity {
 	private static final String TAG = "GameOverActivity";
 	private Players mPlayers;

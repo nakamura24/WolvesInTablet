@@ -23,6 +23,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ToggleButton;
 
+// プレイヤー設定の処理
 public class PlayersActivity extends Activity {
 	private static final String TAG = "PlayersActivity";
 	private Players mPlayers;
@@ -33,6 +34,7 @@ public class PlayersActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		try {
 			setContentView(R.layout.activity_players);
+			
 			mPlayers = Players.getInstance();
 
 			ToggleButton toggleButton_all = (ToggleButton) findViewById(R.id.players_all_toggleButton);
@@ -43,6 +45,7 @@ public class PlayersActivity extends Activity {
 		}
 	}
 
+	// リストの更新
 	public void playersListViewUpdate() {
 		Log.i(TAG, "playersListViewUpdate");
 		try {
@@ -69,6 +72,7 @@ public class PlayersActivity extends Activity {
 		}
 	}
 
+	// リストアイテムがクリックされた時の処理
 	private class ListViewOnItemClickListener implements OnItemClickListener {
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position,

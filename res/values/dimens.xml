@@ -14,7 +14,7 @@
     <dimen name="players_add_name_textSize">20sp</dimen>
     <dimen name="roles_number_textSize">16sp</dimen>
     <dimen name="help_title_textSize">30sp</dimen>
-    <dimen name="help_version_textSize">16sp</dimen>
+    <dimen name="help_version_textSize">20sp</dimen>
     <dimen name="help_content_textSize">20sp</dimen>
     <dimen name="opening_message_textSize">20sp</dimen>
     <dimen name="moning_title_textSize">30sp</dimen>

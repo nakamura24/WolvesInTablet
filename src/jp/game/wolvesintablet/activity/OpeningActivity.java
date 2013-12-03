@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+//　オープニングの処理
 public class OpeningActivity extends Activity {
 	private static final String TAG = "OpeningActivity";
 	private Players mPlayers;
@@ -30,13 +31,14 @@ public class OpeningActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		try {
 			setContentView(R.layout.activity_opening);
+			
 			mPlayers = Players.getInstance();
 			mRoles = Roles.getInstance();
 
 			// プレイヤー人数の警告
 			playersAlertDialog();
 
-			// 初期化
+			// 役職を割り当てる
 			mPlayers.setRole();
 		} catch (Exception e) {
 			ErrorReport.LogException(this, e);

@@ -23,6 +23,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+//　投票行動の処理
 public class VoteActionActivity extends Activity {
 	private static final String TAG = "VoteActionActivity";
 	private GameRule mGameRule;

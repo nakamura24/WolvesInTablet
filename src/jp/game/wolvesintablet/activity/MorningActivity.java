@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+//　朝の行動
 public class MorningActivity extends Activity {
 	private static final String Tag = "MorningActivity";
 	private Players mPlayers;
@@ -42,11 +43,12 @@ public class MorningActivity extends Activity {
 	public void onClickOkButton(View view) {
 		Log.i(Tag, "onClickOkButton");
 		try {
-			Players players = Players.getInstance();
-			if (players.checkGameOver(this) == GameOver_Continue) {
+			if (mPlayers.checkGameOver(this) == GameOver_Continue) {
+				// 昼の行動
 				Intent intent = new Intent(this, NoonActivity.class);
 				startActivity(intent);
 			} else {
+				// ゲームオーバー
 				Intent intent = new Intent(this, GameOverActivity.class);
 				startActivity(intent);
 			}

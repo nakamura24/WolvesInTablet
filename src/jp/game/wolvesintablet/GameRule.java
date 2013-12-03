@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Map.Entry;
 import jp.game.wolvesintablet.Player.STATUS;
+import jp.game.wolvesintablet.Role.ROLE;
 import android.content.Context;
 import android.content.res.Resources;
 import android.util.Log;
@@ -23,12 +24,11 @@ import android.util.Log;
 public class GameRule {
 	private static final String TAG = "GameRule";
 	private static GameRule instance = new GameRule();
-	private int mDays;
+	private int mDays = 1;
 	private ArrayList<Player> mKillPlayers = new ArrayList<Player>();
-	private ArrayList<Player> mGuardPlayers = new ArrayList<Player>();
 	private ArrayList<Player> mOwlPlayers = new ArrayList<Player>();
-	private Player mDoutePlayer;
-	private long LynchedPlayerUID = 0;
+	private Player mDoutePlayer = new Player();
+	private long mLynchedPlayerUID = 0;
 	private ArrayList<Player> mVotedPlayers = new ArrayList<Player>();
 	private HashMap<Long, Integer> mVotes = new HashMap<Long, Integer>();
 	private String mVoteResult = null;
@@ -37,8 +37,15 @@ public class GameRule {
 		return instance;
 	}
 
-	public GameRule() {
+	public void initialize() {
 		this.mDays = 1;
+		this.mKillPlayers = new ArrayList<Player>();
+		this.mOwlPlayers = new ArrayList<Player>();
+		this.mDoutePlayer = new Player();
+		this.mLynchedPlayerUID = 0;
+		this.mVotedPlayers = new ArrayList<Player>();
+		this.mVotes = new HashMap<Long, Integer>();
+		this.mVoteResult = null;
 	}
 
 	public int getDays() {
@@ -50,7 +57,7 @@ public class GameRule {
 	}
 
 	public long getLynchedPlayerUID() {
-		return LynchedPlayerUID;
+		return mLynchedPlayerUID;
 	}
 
 	public String getVoteResult() {
@@ -78,18 +85,61 @@ public class GameRule {
 		mVotes.put(UID, votes);
 	}
 
+	// オプションの行動
+	public Player optionAction(Context context, Players players, long UID) {
+		Log.i(TAG, "optionAction");
+		try {
+			Player player = players.getPlayer(UID);
+			Player selectedPlayer = new Player();
+			switch (player.getRole()) {
+			case Seer:
+				selectedPlayer = new Player(players.getPlayer(player
+						.getSelectedPlayerUID()));
+				if (selectedPlayer.getRole() != ROLE.Werewolf) {
+					selectedPlayer.setRole(ROLE.Villager);
+				}
+				return selectedPlayer;
+			case Medium:
+				selectedPlayer = new Player(players.getPlayer(mLynchedPlayerUID));
+				if (selectedPlayer.getRole() != ROLE.Werewolf) {
+					selectedPlayer.setRole(ROLE.Villager);
+				}
+				return selectedPlayer;
+			case Mythomaniac:
+				selectedPlayer = new Player(players.getPlayer(player
+						.getSelectedPlayerUID()));
+				if (selectedPlayer.getRole() == ROLE.Werewolf) {
+					player.setRole(ROLE.Werewolf);
+				} else if (selectedPlayer.getRole() == ROLE.Seer) {
+					player.setRole(ROLE.Seer);
+				} else {
+					player.setRole(ROLE.Villager);
+				}
+				return player;
+			default:
+				break;
+			}
+		} catch (Exception e) {
+			ErrorReport.LogException(context, e);
+		}
+		return null;
+	}
+
+	// 夜の行動を処理
 	public void actionResult(Context context, Players players) {
 		Log.i(TAG, "actionResult");
 		try {
+			ArrayList<Player> attackPlayers = new ArrayList<Player>();
+			ArrayList<Player> guardPlayers = new ArrayList<Player>();
 			mVotes.clear();
 			for (Player player : players.getAlivePlayers()) {
 				switch (player.getRole()) {
 				case Werewolf:
-					mKillPlayers.add(players.getPlayer(player
+					attackPlayers.add(players.getPlayer(player
 							.getSelectedPlayerUID()));
 					break;
 				case Bodyguard:
-					mGuardPlayers.add(players.getPlayer(player
+					guardPlayers.add(players.getPlayer(player
 							.getSelectedPlayerUID()));
 					break;
 				case Owlman:
@@ -101,21 +151,26 @@ public class GameRule {
 					break;
 				}
 			}
+			// 襲撃を受けるプレイヤーを決定
 			Random rnd = new Random(System.currentTimeMillis());
-			long killedPlayerUID = mKillPlayers.get(
-					rnd.nextInt(mKillPlayers.size())).getUID();
-			mKillPlayers.clear();
-			mKillPlayers.add(players.getPlayer(killedPlayerUID));
-			for (Player player : mGuardPlayers) {
-				if (player.getSelectedPlayerUID() == killedPlayerUID) {
+			Player attackedPlayer = attackPlayers.get(
+					rnd.nextInt(attackPlayers.size()));
+			mKillPlayers.add(attackedPlayer);
+			// 襲撃から守る
+			for (Player player : guardPlayers) {
+				if (player.getUID() == attackedPlayer.getUID()) {
 					mKillPlayers.clear();
 				}
 			}
+			// 殺されたプレイヤーのステータスを変更
 			for (Player player : mKillPlayers) {
 				player.setStatus(STATUS.Killed);
 			}
+			// 疑われているプレイヤーを決定
 			ArrayList<Map.Entry<Long, Integer>> sortedVotes = sortVotes();
 			mDoutePlayer = players.getPlayer(sortedVotes.get(0).getKey());
+			// 選択IDを初期化
+			players.initSelectedPlayers();
 		} catch (Exception e) {
 			ErrorReport.LogException(context, e);
 		}
@@ -154,6 +209,7 @@ public class GameRule {
 		return null;
 	}
 
+	// 審判のメッセージ
 	public String getJudgementMassage(Context context, Players players) {
 		Log.i(TAG, "getJudgementMassage");
 		String massage = "";
@@ -177,7 +233,7 @@ public class GameRule {
 			// 過半数を超えている
 			if (sortedVotes.get(0).getValue() * 2 > players.getAlivePlayers()
 					.size()) {
-				LynchedPlayerUID = sortedVotes.get(0).getKey();
+				mLynchedPlayerUID = sortedVotes.get(0).getKey();
 				players.getPlayer(sortedVotes.get(0).getKey()).setStatus(
 						STATUS.Lynched);
 				massage = String.format(died_message_text,
@@ -185,6 +241,7 @@ public class GameRule {
 								.getName());
 				setVotedPlayers(new ArrayList<Player>());
 			} else {
+				// 2位と同票まで候補にする
 				String voteable = "";
 				ArrayList<Player> revotePlayers = new ArrayList<Player>();
 				if(sortedVotes.get(0).getValue() > sortedVotes.get(1).getValue()){
@@ -210,6 +267,7 @@ public class GameRule {
 		return massage;
 	}
 
+	// 投票のソート
 	private ArrayList<Map.Entry<Long, Integer>> sortVotes() {
 		ArrayList<Map.Entry<Long, Integer>> entries = new ArrayList<Map.Entry<Long, Integer>>(
 				mVotes.entrySet());

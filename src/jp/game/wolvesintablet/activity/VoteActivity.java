@@ -26,6 +26,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+// 投票の処理
 public class VoteActivity extends Activity {
 	private static final String TAG = "VoteActivity";
 	private Players mPlayers;
