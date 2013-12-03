@@ -16,10 +16,12 @@ import android.view.View;
 import android.app.Activity;
 import android.content.Intent;
 
+// メインの処理
 public class MainActivity extends Activity {
 	private static final String TAG = "MainActivity";
 	private Roles mRoles;
 	private Players mPlayers;
+	private GameRule mGameRule;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,9 @@ public class MainActivity extends Activity {
 			mRoles = Roles.getInstance();
 			mRoles.loadRoles(this);
 
+			// ゲームデータの初期化
+			mGameRule = GameRule.getInstance();
+			mGameRule.initialize();
 		} catch (Exception e) {
 			ErrorReport.LogException(this, e);
 		}

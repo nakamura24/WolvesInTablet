@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 
+// プレイヤー追加の処理
 public class PlayersAddActivity extends Activity {
 	private static final String TAG = "PlayersAddActivity";
 

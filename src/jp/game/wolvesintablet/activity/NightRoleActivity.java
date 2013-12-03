@@ -29,6 +29,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
+//　夜の役割毎行動
 public class NightRoleActivity extends Activity {
 	private static final String TAG = "NightRoleActivity";
 	private Players mPlayers;
@@ -43,6 +44,7 @@ public class NightRoleActivity extends Activity {
 		try {
 			mPlayers = Players.getInstance();
 			mGameRule = GameRule.getInstance();
+			
 			Intent intent = getIntent();
 			long UID = intent.getLongExtra(Intent_Player_UID, 0);
 			mPlayer = mPlayers.getPlayer(UID);
@@ -136,6 +138,7 @@ public class NightRoleActivity extends Activity {
 		}
 	}
 
+	// リストアイテムがクリックされた時の処理
 	private class ListViewOnItemClickListener implements OnItemClickListener {
 		private int mPosition = 0;
 

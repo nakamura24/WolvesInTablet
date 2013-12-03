@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+// 審判の処理
 public class JudgementActivity extends Activity {
 	private static final String TAG = "JudgementActivity";
 	private Players mPlayers;
@@ -28,6 +29,7 @@ public class JudgementActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		try {
 			setContentView(R.layout.activity_judgement);
+			
 			mGameRule = GameRule.getInstance();
 			mPlayers = Players.getInstance();
 
@@ -45,13 +47,16 @@ public class JudgementActivity extends Activity {
 		Log.i(TAG, "onClickOkButton");
 		try {
 			if (mGameRule.getVotedPlayers().size() > 0) {
+				// 再投票
 				Intent intent = new Intent(this, VoteActivity.class);
 				startActivity(intent);
 			} else {
 				if (mPlayers.checkGameOver(this) == GameOver_Continue) {
+					// 夜の行動
 					Intent intent = new Intent(this, NightActivity.class);
 					startActivity(intent);
 				} else {
+					// ゲームオーバー
 					Intent intent = new Intent(this, GameOverActivity.class);
 					startActivity(intent);
 				}
