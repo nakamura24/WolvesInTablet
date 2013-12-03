@@ -1,3 +1,11 @@
+/* Copyright (C) 2013 M.Nakamura
+ *
+ * This software is licensed under a Creative Commons
+ * Attribution-NonCommercial-ShareAlike 2.1 Japan License.
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 		http://creativecommons.org/licenses/by-nc-sa/2.1/jp/legalcode
+ */
 package jp.game.wolvesintablet;
 
 import android.content.Context;
@@ -8,14 +16,24 @@ public class Role extends Porson {
 		Werewolf, Villager, Seer, Medium, Possessed, Bodyguard, Owlman, Freemason, Werehamster, Mythomaniac, Devil, Hunter, Apothecary, Matchmaker, Witch, Scryer, Oracle, Hierophant, Magistrate, Gravedigger, Crone, Warlock, Necromancer, Thief, Toughgay, CultLeader, Cultist, Mystic, Fool,
 	}
 
-	private ROLE mRole;
-	private boolean mHilling;
-	private boolean mPoison;
-	
-	public Role(){
+	protected ROLE mRole;
+	protected boolean mHilling;
+	protected boolean mPoison;
+
+	public Role() {
 		this.mRole = ROLE.Villager;
 		this.mHilling = false;
 		this.mPoison = false;
+	}
+
+	public Role(Role role) {
+		this.mUID = role.mUID;
+		this.mName = role.mName;
+		this.mSound = role.mSound;
+		this.mGender = role.mGender;
+		this.mRole = role.mRole;
+		this.mHilling = role.mHilling;
+		this.mPoison = role.mPoison;
 	}
 
 	public void setRole(ROLE role) {
@@ -139,9 +157,21 @@ public class Role extends Porson {
 		return null;
 	}
 
-	public boolean checkRoleOptionAction() {
-		switch(mRole){
+	public boolean checkPreOptionAction() {
+		switch (mRole) {
 		case Medium:
+			return true;
+		default:
+			break;
+		}
+		return false;
+	}
+
+	public boolean checkPostOptionAction() {
+		switch (mRole) {
+		case Seer:
+			return true;
+		case Mythomaniac:
 			return true;
 		default:
 			break;

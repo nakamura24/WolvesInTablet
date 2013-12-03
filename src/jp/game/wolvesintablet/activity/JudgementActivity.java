@@ -32,7 +32,8 @@ public class JudgementActivity extends Activity {
 			mPlayers = Players.getInstance();
 
 			TextView textView_player = (TextView) findViewById(R.id.judgement_message_textView);
-			textView_player.setText(mGameRule.getJudgementMassage(this, mPlayers));
+			textView_player.setText(mGameRule.getJudgementMassage(this,
+					mPlayers));
 			TextView result_textView = (TextView) findViewById(R.id.judgement_result_textView);
 			result_textView.setText(mGameRule.getVoteResult());
 		} catch (Exception e) {
@@ -43,7 +44,7 @@ public class JudgementActivity extends Activity {
 	public void onClickOkButton(View view) {
 		Log.i(TAG, "onClickOkButton");
 		try {
-			if (mGameRule.getVotedUIDs().size() > 0) {
+			if (mGameRule.getVotedPlayers().size() > 0) {
 				Intent intent = new Intent(this, VoteActivity.class);
 				startActivity(intent);
 			} else {

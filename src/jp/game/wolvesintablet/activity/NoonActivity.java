@@ -95,8 +95,10 @@ public class NoonActivity extends Activity {
 					TextView textView_timer = (TextView) findViewById(R.id.noon_timer_textView);
 					textView_timer.setText(timer_text);
 					ToneGenerator toneGenerator = new ToneGenerator(
-							AudioManager.STREAM_SYSTEM, ToneGenerator.MAX_VOLUME);
-					toneGenerator.startTone(ToneGenerator.TONE_PROP_BEEP, Noon_Tone);
+							AudioManager.STREAM_SYSTEM,
+							ToneGenerator.MAX_VOLUME);
+					toneGenerator.startTone(ToneGenerator.TONE_PROP_BEEP,
+							Noon_Tone);
 				}
 			}.start();
 		} catch (Exception e) {
@@ -108,8 +110,8 @@ public class NoonActivity extends Activity {
 		Log.i(TAG, "onClickOkButton");
 		try {
 			// 投票の前に設定
-			mGameRule.setVotedUIDs(mPlayers.getAlivePlayers());
-			
+			mGameRule.setVotedPlayers(mPlayers.getAlivePlayers());
+
 			Intent intent = new Intent(this, VoteActivity.class);
 			startActivity(intent);
 		} catch (Exception e) {

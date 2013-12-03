@@ -9,6 +9,7 @@ package jp.game.wolvesintablet;
 
 public final class R {
     public static final class array {
+        public static final int gameover_winners=0x7f060004;
         public static final int roles_actions=0x7f060003;
         public static final int roles_details=0x7f060001;
         public static final int roles_messages=0x7f060002;

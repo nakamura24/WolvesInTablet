@@ -48,7 +48,8 @@ public class OpeningActivity extends Activity {
 		Log.i(TAG, "playersAlertDialog");
 		try {
 			if (mPlayers.getPlayingPlayers().size() < MinPlayers
-					|| mPlayers.getPlayingPlayers().size() > mRoles.getmMaxPlayers()) {
+					|| mPlayers.getPlayingPlayers().size() > mRoles
+							.getmMaxPlayers()) {
 				Log.d(TAG, "AlertWarningDialog");
 
 				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
@@ -64,7 +65,8 @@ public class OpeningActivity extends Activity {
 					warning_players = String
 							.format(warning_players, MinPlayers);
 				}
-				if (mPlayers.getPlayingPlayers().size() > mRoles.getmMaxPlayers()) {
+				if (mPlayers.getPlayingPlayers().size() > mRoles
+						.getmMaxPlayers()) {
 					warning_players = resource
 							.getString(R.string.roles_text_warning_max);
 				}

@@ -29,10 +29,12 @@ public class GameOverActivity extends Activity {
 
 			mPlayers = Players.getInstance();
 			String message = "";
-//			TextView title_textView = (TextView) findViewById(R.id.gameover_title_textView);
+			TextView title_textView = (TextView) findViewById(R.id.gameover_title_textView);
+			title_textView.setText(mPlayers.getWinners(this));
 			TextView content_textView = (TextView) findViewById(R.id.gameover_content_textView);
 			for (Player player : mPlayers.getPlayingPlayers()) {
-				message += player.getName() + " - " + player.getRoleName(this) + "\n";
+				message += player.getName() + " - " + player.getRoleName(this)
+						+ "\n";
 			}
 			content_textView.setText(message);
 		} catch (Exception e) {

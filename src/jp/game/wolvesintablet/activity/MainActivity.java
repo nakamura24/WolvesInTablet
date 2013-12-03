@@ -57,7 +57,7 @@ public class MainActivity extends Activity {
 			ErrorReport.LogException(this, e);
 		}
 	}
-    
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		Log.i(TAG, "onActivityResult");

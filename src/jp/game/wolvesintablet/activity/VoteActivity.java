@@ -139,8 +139,8 @@ public class VoteActivity extends Activity {
 				// アラートダイアログのメッセージを設定します
 				Resources resource = getResources();
 				String message = resource.getString(R.string.vote_action_text);
-				message = String.format(message,
-						mPlayers.getPlayingPlayers().get(position).getName());
+				message = String.format(message, mPlayers.getPlayingPlayers()
+						.get(position).getName());
 				alertDialogBuilder.setMessage(message);
 				// アラートダイアログの肯定ボタンがクリックされた時に呼び出されるコールバックリスナーを登録します
 				alertDialogBuilder.setNegativeButton(R.string.common_text_ok,
@@ -165,7 +165,7 @@ public class VoteActivity extends Activity {
 					players[mPosition] = true;
 					Intent intent = new Intent(VoteActivity.this,
 							VoteActionActivity.class);
-					intent.putExtra(Intent_RoleView_UID, mPlayers
+					intent.putExtra(Intent_Player_UID, mPlayers
 							.getPlayingPlayers().get(mPosition).getUID());
 					startActivityForResult(intent, ACTIVITY_VOTE_ACTION);
 				} catch (ActivityNotFoundException e) {

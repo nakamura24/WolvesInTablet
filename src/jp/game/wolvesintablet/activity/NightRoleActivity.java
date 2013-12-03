@@ -44,7 +44,7 @@ public class NightRoleActivity extends Activity {
 			mPlayers = Players.getInstance();
 			mGameRule = GameRule.getInstance();
 			Intent intent = getIntent();
-			long UID = intent.getLongExtra(Intent_RoleView_UID, 0);
+			long UID = intent.getLongExtra(Intent_Player_UID, 0);
 			mPlayer = mPlayers.getPlayer(UID);
 			if (mPlayer == null) {
 				// 画面の終了
@@ -99,7 +99,7 @@ public class NightRoleActivity extends Activity {
 					+ mPlayer.getRoleName(this) + ")");
 			TextView message_textView = (TextView) findViewById(R.id.roleaction_message_textView);
 			message_textView.setText(mPlayer.getRolesMessage(this));
-			if (mPlayer.checkRoleOptionAction()) {
+			if (mPlayer.checkPreOptionAction()) {
 				Button confirm_button = (Button) findViewById(R.id.roleaction_confirm_button);
 				confirm_button.setVisibility(View.VISIBLE);
 			}
@@ -172,7 +172,11 @@ public class NightRoleActivity extends Activity {
 				Log.i(TAG, "onClick");
 				try {
 					mPlayer.setSelectedPlayerUID(mSelectablePlayers.get(
-							mPosition).getSelectedPlayerUID());
+							mPosition).getUID());
+					if (mPlayer.checkPostOptionAction()) {
+						Button confirm_button = (Button) findViewById(R.id.roleaction_confirm_button);
+						confirm_button.setVisibility(View.VISIBLE);
+					}
 				} catch (ActivityNotFoundException e) {
 					ErrorReport.LogException(NightRoleActivity.this, e);
 				}
@@ -201,10 +205,24 @@ public class NightRoleActivity extends Activity {
 			TextView content_textView = (TextView) findViewById(R.id.gameover_content_textView);
 			String message = "";
 			for (Player player : mPlayers.getPlayingPlayers()) {
-				message += player.getName() + " - " + player.getRoleName(this) + "\n";
+				message += player.getName() + " - " + player.getRoleName(this)
+						+ "\n";
 			}
 			content_textView.setText(message);
 			mPlayer.setStatus(STATUS.Died);
+		} catch (Exception e) {
+			ErrorReport.LogException(this, e);
+		}
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		Log.i(TAG, "onActivityResult");
+		try {
+			switch (requestCode) {
+			case ACTIVITY_NIGHT_OPTION:
+				break;
+			}
 		} catch (Exception e) {
 			ErrorReport.LogException(this, e);
 		}
@@ -225,10 +243,9 @@ public class NightRoleActivity extends Activity {
 	public void onClickConfirmButton(View view) {
 		Log.i(TAG, "onClickConfirmButton");
 		try {
-			// Intent intent = new Intent(this,
-			// NightRoleActivity.class);
-			// intent.putExtra(Intent_RoleView_UID, mPlayer.getUID());
-			// startActivityForResult(intent, ACTIVITY_ROLE_VIEW);
+			Intent intent = new Intent(this, NightOptionActivity.class);
+			intent.putExtra(Intent_Player_UID, mPlayer.getUID());
+			startActivityForResult(intent, ACTIVITY_NIGHT_OPTION);
 		} catch (Exception e) {
 			ErrorReport.LogException(this, e);
 		}

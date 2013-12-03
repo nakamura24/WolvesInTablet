@@ -1,23 +1,36 @@
+/* Copyright (C) 2013 M.Nakamura
+ *
+ * This software is licensed under a Creative Commons
+ * Attribution-NonCommercial-ShareAlike 2.1 Japan License.
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 		http://creativecommons.org/licenses/by-nc-sa/2.1/jp/legalcode
+ */
 package jp.game.wolvesintablet;
 
+import java.util.ArrayList;
+import java.util.Random;
 import static jp.game.wolvesintablet.Constant.*;
 import jp.game.wolvesintablet.Player.STATUS;
 import jp.game.wolvesintablet.Porson.GENDER;
 import jp.game.wolvesintablet.Role.ROLE;
-
-import java.util.ArrayList;
-import java.util.Random;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.res.Resources;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
 public class Players {
 	private static final String TAG = "Players";
 	private static Players instance = new Players();
+
+	public enum WINNER {
+		Villagers, Werewolves, Werehamsters, Devils, Cultists, Mystics, Lovers
+	}
+
 	private ArrayList<Player> mPlayers = new ArrayList<Player>();
+	private WINNER mWinners;
 
 	public static Players getInstance() {
 		return instance;
@@ -255,19 +268,39 @@ public class Players {
 			for (Player player : mPlayers) {
 				switch (player.getRole()) {
 				case Werewolf:
-					if(player.getStatus() == STATUS.Alive) werewolf++;
+					if (player.getStatus() == STATUS.Alive)
+						werewolf++;
 					break;
 				default:
-					if(player.getStatus() == STATUS.Alive) villager++;
+					if (player.getStatus() == STATUS.Alive)
+						villager++;
 					break;
 				}
 			}
-			if(werewolf <= 0 || werewolf >= villager){
+			if (werewolf <= 0) {
+				mWinners = WINNER.Villagers;
+				return GameOver_GameOver;
+			}
+			if (werewolf >= villager) {
+				mWinners = WINNER.Werewolves;
 				return GameOver_GameOver;
 			}
 		} catch (Exception e) {
 			ErrorReport.LogException(context, e);
 		}
 		return GameOver_Continue;
+	}
+
+	public String getWinners(Context context) {
+		Log.i(TAG, "getWinners");
+		try {
+			Resources resource = context.getResources();
+			String[] gameover_winners = resource
+					.getStringArray(R.array.gameover_winners);
+			return gameover_winners[mWinners.ordinal()];
+		} catch (Exception e) {
+			ErrorReport.LogException(context, e);
+		}
+		return "";
 	}
 }

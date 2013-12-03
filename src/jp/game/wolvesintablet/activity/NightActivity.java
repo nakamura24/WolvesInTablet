@@ -91,9 +91,7 @@ public class NightActivity extends Activity {
 		Log.i(TAG, "onActivityResult");
 		try {
 			switch (requestCode) {
-			case ACTIVITY_ROLE_VIEW:
-				break;
-			case ACTIVITY_ROLE_ACTION:
+			case ACTIVITY_NIGHT_ROLE:
 				break;
 			}
 			// リストビュー更新
@@ -155,8 +153,8 @@ public class NightActivity extends Activity {
 				// アラートダイアログのメッセージを設定します
 				Resources resource = getResources();
 				String message = resource.getString(R.string.night_action_text);
-				message = String.format(message,
-						mPlayers.getPlayingPlayers().get(position).getName());
+				message = String.format(message, mPlayers.getPlayingPlayers()
+						.get(position).getName());
 				alertDialogBuilder.setMessage(message);
 				// アラートダイアログの肯定ボタンがクリックされた時に呼び出されるコールバックリスナーを登録します
 				alertDialogBuilder.setNegativeButton(R.string.common_text_ok,
@@ -181,9 +179,9 @@ public class NightActivity extends Activity {
 					players[mPosition] = true;
 					Intent intent = new Intent(NightActivity.this,
 							NightRoleActivity.class);
-					intent.putExtra(Intent_RoleView_UID, mPlayers
+					intent.putExtra(Intent_Player_UID, mPlayers
 							.getPlayingPlayers().get(mPosition).getUID());
-					startActivityForResult(intent, ACTIVITY_ROLE_VIEW);
+					startActivityForResult(intent, ACTIVITY_NIGHT_ROLE);
 				} catch (ActivityNotFoundException e) {
 					ErrorReport.LogException(NightActivity.this, e);
 				}
