@@ -157,9 +157,21 @@ public class Role extends Porson {
 		return null;
 	}
 
-	public boolean checkRoleOptionAction() {
+	public boolean checkPreOptionAction() {
 		switch (mRole) {
 		case Medium:
+			return true;
+		default:
+			break;
+		}
+		return false;
+	}
+
+	public boolean checkPostOptionAction() {
+		switch (mRole) {
+		case Seer:
+			return true;
+		case Mythomaniac:
 			return true;
 		default:
 			break;

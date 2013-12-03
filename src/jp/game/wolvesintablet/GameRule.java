@@ -78,8 +78,51 @@ public class GameRule {
 		mVotes.put(UID, votes);
 	}
 
+	public void actionResult(Context context, Players players) {
+		Log.i(TAG, "actionResult");
+		try {
+			mVotes.clear();
+			for (Player player : players.getAlivePlayers()) {
+				switch (player.getRole()) {
+				case Werewolf:
+					mKillPlayers.add(players.getPlayer(player
+							.getSelectedPlayerUID()));
+					break;
+				case Bodyguard:
+					mGuardPlayers.add(players.getPlayer(player
+							.getSelectedPlayerUID()));
+					break;
+				case Owlman:
+					mOwlPlayers.add(players.getPlayer(player
+							.getSelectedPlayerUID()));
+					break;
+				default:
+					votePlayer(player.getSelectedPlayerUID());
+					break;
+				}
+			}
+			Random rnd = new Random(System.currentTimeMillis());
+			long killedPlayerUID = mKillPlayers.get(
+					rnd.nextInt(mKillPlayers.size())).getUID();
+			mKillPlayers.clear();
+			mKillPlayers.add(players.getPlayer(killedPlayerUID));
+			for (Player player : mGuardPlayers) {
+				if (player.getSelectedPlayerUID() == killedPlayerUID) {
+					mKillPlayers.clear();
+				}
+			}
+			for (Player player : mKillPlayers) {
+				player.setStatus(STATUS.Killed);
+			}
+			ArrayList<Map.Entry<Long, Integer>> sortedVotes = sortVotes();
+			mDoutePlayer = players.getPlayer(sortedVotes.get(0).getKey());
+		} catch (Exception e) {
+			ErrorReport.LogException(context, e);
+		}
+	}
+
 	// 朝のメッセージ
-	public String getMoningMassage(Context context) {
+	public String getMoningMassage(Context context, Players players) {
 		Log.i(TAG, "getMoningMassage");
 		try {
 			Resources resource = context.getResources();
@@ -89,6 +132,7 @@ public class GameRule {
 					.getString(R.string.moning_no_died_text);
 			String message = "";
 			if (mDays > 1) {
+				actionResult(context, players);
 				if (mKillPlayers.size() > 0) {
 					message = " ";
 					for (Player player : mKillPlayers) {
@@ -141,14 +185,16 @@ public class GameRule {
 								.getName());
 				setVotedPlayers(new ArrayList<Player>());
 			} else {
+				String voteable = "";
 				ArrayList<Player> revotePlayers = new ArrayList<Player>();
-				revotePlayers.add(players
-						.getPlayer(sortedVotes.get(0).getKey()));
-				String voteable = players
-						.getPlayer(sortedVotes.get(0).getKey()).getName() + " ";
-				int second = sortedVotes.get(1).getValue();
+				if(sortedVotes.get(0).getValue() > sortedVotes.get(1).getValue()){
+					revotePlayers.add(players
+							.getPlayer(sortedVotes.get(0).getKey()));
+					voteable = players
+							.getPlayer(sortedVotes.get(0).getKey()).getName() + " ";
+				}
 				for (Entry<Long, Integer> sortedentry : sortedVotes) {
-					if (sortedentry.getValue() == second) {
+					if (sortedentry.getValue() == sortedVotes.get(1).getValue()) {
 						revotePlayers.add(players.getPlayer(sortedentry
 								.getKey()));
 						voteable += players.getPlayer(sortedentry.getKey())
@@ -162,49 +208,6 @@ public class GameRule {
 			ErrorReport.LogException(context, e);
 		}
 		return massage;
-	}
-
-	public void actionResult(Context context, Players players) {
-		Log.i(TAG, "actionResult");
-		try {
-			mVotes.clear();
-			for (Player player : players.getAlivePlayers()) {
-				switch (player.getRole()) {
-				case Werewolf:
-					mKillPlayers.add(players.getPlayer(player
-							.getSelectedPlayerUID()));
-					break;
-				case Bodyguard:
-					mGuardPlayers.add(players.getPlayer(player
-							.getSelectedPlayerUID()));
-					break;
-				case Owlman:
-					mOwlPlayers.add(players.getPlayer(player
-							.getSelectedPlayerUID()));
-					break;
-				default:
-					votePlayer(player.getSelectedPlayerUID());
-					break;
-				}
-			}
-			Random rnd = new Random(System.currentTimeMillis());
-			long killedPlayerUID = mKillPlayers.get(
-					rnd.nextInt(mKillPlayers.size())).getUID();
-			mKillPlayers.clear();
-			mKillPlayers.add(players.getPlayer(killedPlayerUID));
-			for (Player player : mGuardPlayers) {
-				if (player.getSelectedPlayerUID() == killedPlayerUID) {
-					mKillPlayers.clear();
-				}
-			}
-			for (Player player : mKillPlayers) {
-				player.setStatus(STATUS.Killed);
-			}
-			ArrayList<Map.Entry<Long, Integer>> sortedVotes = sortVotes();
-			mDoutePlayer = players.getPlayer(sortedVotes.get(0).getKey());
-		} catch (Exception e) {
-			ErrorReport.LogException(context, e);
-		}
 	}
 
 	private ArrayList<Map.Entry<Long, Integer>> sortVotes() {

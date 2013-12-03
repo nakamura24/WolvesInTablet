@@ -99,7 +99,7 @@ public class NightRoleActivity extends Activity {
 					+ mPlayer.getRoleName(this) + ")");
 			TextView message_textView = (TextView) findViewById(R.id.roleaction_message_textView);
 			message_textView.setText(mPlayer.getRolesMessage(this));
-			if (mPlayer.checkRoleOptionAction()) {
+			if (mPlayer.checkPreOptionAction()) {
 				Button confirm_button = (Button) findViewById(R.id.roleaction_confirm_button);
 				confirm_button.setVisibility(View.VISIBLE);
 			}
@@ -172,7 +172,11 @@ public class NightRoleActivity extends Activity {
 				Log.i(TAG, "onClick");
 				try {
 					mPlayer.setSelectedPlayerUID(mSelectablePlayers.get(
-							mPosition).getSelectedPlayerUID());
+							mPosition).getUID());
+					if (mPlayer.checkPostOptionAction()) {
+						Button confirm_button = (Button) findViewById(R.id.roleaction_confirm_button);
+						confirm_button.setVisibility(View.VISIBLE);
+					}
 				} catch (ActivityNotFoundException e) {
 					ErrorReport.LogException(NightRoleActivity.this, e);
 				}

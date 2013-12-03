@@ -53,6 +53,7 @@ public class NightOptionActivity extends Activity {
 			Player selectedPlayer = new Player();
 			switch (mPlayer.getRole()) {
 			case Seer:
+				Log.d(TAG, "SelectedPlayerUID = " + mPlayer.getSelectedPlayerUID());
 				selectedPlayer = new Player(mPlayers.getPlayer(mPlayer
 						.getSelectedPlayerUID()));
 				if (selectedPlayer.getRole() != ROLE.Werewolf) {
@@ -61,6 +62,7 @@ public class NightOptionActivity extends Activity {
 				roleView(selectedPlayer);
 				break;
 			case Medium:
+				Log.d(TAG, "LynchedPlayerUID = " + mGameRule.getLynchedPlayerUID());
 				selectedPlayer = new Player(mPlayers.getPlayer(mGameRule
 						.getLynchedPlayerUID()));
 				if (selectedPlayer.getRole() != ROLE.Werewolf) {
@@ -69,6 +71,7 @@ public class NightOptionActivity extends Activity {
 				roleView(selectedPlayer);
 				break;
 			case Mythomaniac:
+				Log.d(TAG, "SelectedPlayerUID = " + mPlayer.getSelectedPlayerUID());
 				selectedPlayer = new Player(mPlayers.getPlayer(mPlayer
 						.getSelectedPlayerUID()));
 				if (selectedPlayer.getRole() == ROLE.Werewolf) {
