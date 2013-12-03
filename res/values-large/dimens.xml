@@ -5,4 +5,34 @@
     <dimen name="activity_horizontal_margin">0dp</dimen>
     <dimen name="activity_vertical_margin">0dp</dimen>
     
+    <dimen name="main_title_marginBottom">100dp</dimen>
+    <dimen name="main_option_marginTop">25dp</dimen>
+    <dimen name="main_title_textSize">40sp</dimen>
+    <dimen name="main_start_textSize">40sp</dimen>
+    <dimen name="main_option_textSize">20sp</dimen>
+    <dimen name="players_all_textSize">20sp</dimen>
+    <dimen name="players_add_name_textSize">20sp</dimen>
+    <dimen name="roles_number_textSize">16sp</dimen>
+    <dimen name="help_title_textSize">30sp</dimen>
+    <dimen name="help_version_textSize">20sp</dimen>
+    <dimen name="help_content_textSize">20sp</dimen>
+    <dimen name="opening_message_textSize">20sp</dimen>
+    <dimen name="moning_title_textSize">30sp</dimen>
+    <dimen name="moning_message_textSize">20sp</dimen>
+    <dimen name="noon_title_textSize">30sp</dimen>
+    <dimen name="noon_message_textSize">20sp</dimen>
+    <dimen name="noon_timer_textSize">80sp</dimen>
+    <dimen name="vote_title_textSize">30sp</dimen>
+    <dimen name="judgement_title_textSize">30sp</dimen>
+    <dimen name="judgement_result_textSize">20sp</dimen>
+    <dimen name="judgement_message_textSize">20sp</dimen>
+    <dimen name="night_title_textSize">30sp</dimen>
+    <dimen name="roleaction_name_textSize">30sp</dimen>
+    <dimen name="roleaction_message_textSize">20sp</dimen>
+    <dimen name="roleview_name_textSize">30sp</dimen>
+    <dimen name="roleview_description_textSize">20sp</dimen>
+    <dimen name="roleview_message_textSize">30sp</dimen>
+    <dimen name="gameover_title_textSize">30sp</dimen>
+    <dimen name="gameover_content_textSize">20sp</dimen>
+
 </resources>
