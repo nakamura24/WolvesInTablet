@@ -39,7 +39,7 @@ public class NightOptionActivity extends Activity {
 				setResult(RESULT_OK, finishIntent);
 				finish();
 			}
-			Player player = mGameRule.optionAction(this, mPlayers, UID);
+			Player player = mGameRule.optionRoleView(this, mPlayers, UID);
 			if(player != null){
 				roleView(player);
 			}

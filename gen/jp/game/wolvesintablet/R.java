@@ -19,7 +19,6 @@ public final class R {
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
- Default screen margins, per the Android Design guidelines. 
          */
         public static final int activity_horizontal_margin=0x7f040000;
         public static final int activity_vertical_margin=0x7f040001;
