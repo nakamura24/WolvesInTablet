@@ -86,8 +86,8 @@ public class GameRule {
 	}
 
 	// オプションの行動
-	public Player optionAction(Context context, Players players, long UID) {
-		Log.i(TAG, "optionAction");
+	public Player optionRoleView(Context context, Players players, long UID) {
+		Log.i(TAG, "optionRoleView");
 		try {
 			Player player = players.getPlayer(UID);
 			Player selectedPlayer = new Player();
@@ -100,7 +100,8 @@ public class GameRule {
 				}
 				return selectedPlayer;
 			case Medium:
-				selectedPlayer = new Player(players.getPlayer(mLynchedPlayerUID));
+				selectedPlayer = new Player(
+						players.getPlayer(mLynchedPlayerUID));
 				if (selectedPlayer.getRole() != ROLE.Werewolf) {
 					selectedPlayer.setRole(ROLE.Villager);
 				}
@@ -153,8 +154,8 @@ public class GameRule {
 			}
 			// 襲撃を受けるプレイヤーを決定
 			Random rnd = new Random(System.currentTimeMillis());
-			Player attackedPlayer = attackPlayers.get(
-					rnd.nextInt(attackPlayers.size()));
+			Player attackedPlayer = attackPlayers.get(rnd.nextInt(attackPlayers
+					.size()));
 			mKillPlayers.add(attackedPlayer);
 			// 襲撃から守る
 			for (Player player : guardPlayers) {
@@ -244,11 +245,12 @@ public class GameRule {
 				// 2位と同票まで候補にする
 				String voteable = "";
 				ArrayList<Player> revotePlayers = new ArrayList<Player>();
-				if(sortedVotes.get(0).getValue() > sortedVotes.get(1).getValue()){
-					revotePlayers.add(players
-							.getPlayer(sortedVotes.get(0).getKey()));
-					voteable = players
-							.getPlayer(sortedVotes.get(0).getKey()).getName() + " ";
+				if (sortedVotes.get(0).getValue() > sortedVotes.get(1)
+						.getValue()) {
+					revotePlayers.add(players.getPlayer(sortedVotes.get(0)
+							.getKey()));
+					voteable = players.getPlayer(sortedVotes.get(0).getKey())
+							.getName() + " ";
 				}
 				for (Entry<Long, Integer> sortedentry : sortedVotes) {
 					if (sortedentry.getValue() == sortedVotes.get(1).getValue()) {

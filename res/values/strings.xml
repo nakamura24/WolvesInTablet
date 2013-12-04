@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">タブレットの狼\n(Wolves In Tablet)</string>
+    <string name="app_name">タブレットの狼</string>
     <string name="common_text_ok">ＯＫ</string>
     <string name="common_text_cancel">キャンセル</string>
     <string name="common_text_warning">警告</string>

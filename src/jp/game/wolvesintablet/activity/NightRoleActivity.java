@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import jp.game.wolvesintablet.*;
 import jp.game.wolvesintablet.Player.STATUS;
+import jp.game.wolvesintablet.Role.ROLE;
 import static jp.game.wolvesintablet.Constant.*;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -124,8 +125,15 @@ public class NightRoleActivity extends Activity {
 		Log.i(TAG, "ListView_update");
 		try {
 			ListView listView_players = (ListView) findViewById(R.id.roleaction_listView_players);
-			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-					android.R.layout.simple_list_item_checked);
+			ArrayAdapter<String> adapter;
+			if (mPlayer.getRole() == ROLE.Werewolf) {
+				adapter = new ArrayAdapter<String>(this,
+						android.R.layout.simple_list_item_multiple_choice);
+				listView_players.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+			} else {
+				adapter = new ArrayAdapter<String>(this,
+						android.R.layout.simple_list_item_checked);
+			}
 			for (int i = 0; i < mSelectablePlayers.size(); i++) {
 				adapter.add(mSelectablePlayers.get(i).getName());
 			}
@@ -133,6 +141,36 @@ public class NightRoleActivity extends Activity {
 			listView_players.setItemsCanFocus(false);
 			listView_players
 					.setOnItemClickListener(new ListViewOnItemClickListener());
+			// リストビュー更新(人狼用)
+			ListView_werewolevs();
+		} catch (Exception e) {
+			ErrorReport.LogException(this, e);
+		}
+	}
+
+	// リストビュー更新(人狼用)
+	private void ListView_werewolevs() {
+		Log.i(TAG, "ListView_werewolevs");
+		try {
+			if (mPlayer.getRole() == ROLE.Werewolf) {
+				ListView listView_players = (ListView) findViewById(R.id.roleaction_listView_players);
+				// 人狼の襲撃対象リスト
+				ArrayList<Long> attackPlayers = new ArrayList<Long>();
+				for (Player player : mPlayers.getAlivePlayers()) {
+					if (player.getSelectedPlayerUID() != 0) {
+						attackPlayers.add(player.getSelectedPlayerUID());
+					}
+				}
+				// 人狼の襲撃対象にチェック
+				for (int i = 0; i < mSelectablePlayers.size(); i++) {
+					for (int j = 0; j < attackPlayers.size(); j++) {
+						if (mSelectablePlayers.get(i).getUID() == attackPlayers
+								.get(j)) {
+							listView_players.setItemChecked(i, true);
+						}
+					}
+				}
+			}
 		} catch (Exception e) {
 			ErrorReport.LogException(this, e);
 		}
@@ -182,6 +220,8 @@ public class NightRoleActivity extends Activity {
 						Button confirm_button = (Button) findViewById(R.id.roleaction_confirm_button);
 						confirm_button.setVisibility(View.VISIBLE);
 					}
+					// リストビュー更新(人狼用)
+					ListView_werewolevs();
 				} catch (ActivityNotFoundException e) {
 					ErrorReport.LogException(NightRoleActivity.this, e);
 				}
